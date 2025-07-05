@@ -1,23 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/icon.jpg" type="image/jpg">
+  <title>Home - TimKS</title>
+  
 </head>
 <body>
-    <div id="navbar"></div>
-    <script>
-        fetch('navbar.html')
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
+  <div id="navbar"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+
+        // Highlight active link
+        const links = document.querySelectorAll('.nav-links a');
+        const currentPage = window.location.pathname.split('/').pop();
+
+        links.forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+          }
         });
-    </script>
+      });
+  </script>
 
+  <!-- Banner -->
+  <div class="banner-container">
+    <img src="images/banner.png" alt="Banner Background" />
+    <img src="images/icon.jpg" alt="Logo" />
+  </div>
 
-    <h1>Amogn us</h1>
+  <!-- Intro / Socials -->
+  <section class="intro-section">
+    <h2>Welcome!</h2>
+    <p>Hi, I'm TimKS! I'm passionate about various creative projects, from game development to storytelling.</p>
 
+    <div>
+      <a href="https://twitter.com/timksyt" target="_blank">
+        <img src="images/twitter-icon.png" alt="Twitter" />
+      </a>
+      <a href="https://github.com/timothyks" target="_blank">
+        <img src="images/github-icon.png" alt="GitHub" />
+      </a>
+      <a href="https://youtube.com/timks" target="_blank">
+        <img src="images/youtube-icon.png" alt="YouTube" />
+      </a>
+      <a href="https://www.roblox.com/users/1102772654/profile" target="_blank">
+        <img src="images/roblox-icon.png" alt="Roblox" />
+      </a>
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <h2 class="section-title">My Cinematic Universe</h2>
+  
+    <div class="feature-cards">
+      
+      <!-- Shapeoff -->
+      <div class="feature-card">
+        <img src="images/shapeoff-logo.png" alt="Shapeoff Logo" class="feature-logo">
+        <h3 class="feature-title">Shapeoff</h3>
+        <p class="feature-description">Ten shapes battle it out for complete sovereignty over the Shapelands, but a mysterious challenge also awaits them...</p>
+        <a href="shapeoff.html" class="feature-button shapeoff">Explore Shapeoff</a>
+      </div>
+  
+      <!-- BFMS -->
+      <div class="feature-card">
+        <img src="images/bfms-logo.png" alt="BFMS Logo" class="feature-logo">
+        <h3 class="feature-title">Battle For Mom Simulator</h3>
+        <p class="feature-description">Shapes play a gameshow with an enigmatic host to win the first editions of Mom Simulator - 'cus you don't have one!</p>
+        <a href="bfms.html" class="feature-button bfms">Explore Battle For Mom Simulator</a>
+      </div>
+  
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <h2 class="section-title">My Roblox Games</h2>
+  
+    <div class="feature-cards">
+        <!-- ball game: faraway facilities (2024-2025) -->
+      <div class="feature-card">
+        <img src="images/ballgame-logo.png" alt="ball game Logo" class="feature-logo">
+        <h3 class="feature-title">ball game: faraway facilities (2024-2025)</h3>
+        <p class="feature-description">The newest and best game I have created so far with the most robust features and the most gameplay. It's all about balls and lore.</p>
+        <a href="https://www.roblox.com/games/18594754228" target="_blank" class="feature-button ballgame">Visit (www.roblox.com)</a>
+      </div>
+
+      <!-- Distance Zero -->
+      <div class="feature-card">
+        <img src="images/distancezero-logo.png" alt="Distance Zero Logo" class="feature-logo">
+        <h3 class="feature-title">Distance Zero (2024)</h3>
+        <p class="feature-description">This is a remake to a friend's game on Blockate. Survive the nights from a dangerous and mysterious entity trying to flood the sewers.</p>
+        <a href="https://www.roblox.com/games/16651874237" target="_blank" class="feature-button distancezero">Visit (www.roblox.com)</a>
+      </div>
+
+  <!-- farm rice -->
+      <div class="feature-card">
+        <img src="images/farmrice-logo.png" alt="farm rice Logo" class="feature-logo">
+        <h3 class="feature-title">farm rice (2023)</h3>
+        <p class="feature-description">Harvest boundless rice in the fields and sell rice to get money and cosmetics. The development of this game played a pivotal role in my growth as a game developer.</p>
+        <a href="https://www.roblox.com/games/15091282893" target="_blank" class="feature-button farmrice">Visit (www.roblox.com)</a>
+      </div>
+
+      <!-- Doge Coin Miner -->
+      <div class="feature-card">
+        <img src="images/dcm-logo.png" alt="Doge Coin Miner Logo" class="feature-logo">
+        <h3 class="feature-title">Doge Coin Miner (2021)</h3>
+        <p class="feature-description">A "low-poly ore mining" game I made back in 2021 that kickstarted my game development journey. Many remakes were made but nothing ever came to fruition.</p>
+        <a href="https://www.roblox.com/games/6513807306" target="_blank" class="feature-button dcm">Visit (www.roblox.com)</a>
+      </div>
+
+    </div>
+  </section>
 </body>
 </html>

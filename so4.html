@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shapeoff - Episode 4</title>
+  <link rel="icon" href="images/icon.jpg" type="image/jpg">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .episode-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .episode-title {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .air-date {
+      color: #cccccc;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      margin-bottom: 30px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <script>
+      fetch('navbar.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('navbar').innerHTML = data;
+    
+          // ✅ Highlight active link
+          const links = document.querySelectorAll('.nav-links a');
+          const currentPage = window.location.pathname.split('/').pop();  // Get the current page's file name
+    
+          links.forEach(link => {
+            // Check if the link's href matches the current page URL
+            if (link.getAttribute('href') === currentPage) {
+              link.classList.add('active');  // Add active class
+            }
+          });
+        });
+    </script>
+
+<div class="episode-container" style="
+margin: 20px auto;
+max-width: 800px;
+padding-left: 4%;
+padding-right: 4%;
+">
+    <h1 class="episode-title">Shapeoff 4: Mind the Gap</h1>
+    <p class="air-date">Aired: August 17, 2024</p>
+    <p class="air-date">Estimated Runtime: 40 minutes</p>
+    <p class="description">
+      The contestants are put to the test with a quiz about the Shapelands and its mysterious past. Unfamiliar with much of the history, they turn to a nearby library for help. But as they search for answers, the books reveal more than just facts—offering glimpses into a time unheard of before.
+    </p>
+
+    <!-- Google Docs Embed -->
+    <iframe src="https://docs.google.com/document/d/e/2PACX-1vTscPsnDsSDrk8eLbtiMSJ5Q4Mzye4xK7MqS4AxNHp2MgLljgP63v6dxfQUZjv0Cbd5mjIB3OVllC21/pub?embedded=true"></iframe>
+
+    <!-- Navigation Buttons -->
+    <div class="button-row" style="margin-bottom: 20px;">
+      <a href="index.html" class="feature-button shapeoff">Home Page</a>
+      <a href="shapeoff.html" class="feature-button shapeoff">Back to Shapeoff Page</a>
+    </div>
+  </div>
+</body>
+</html>

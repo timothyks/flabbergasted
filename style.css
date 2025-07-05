@@ -1,48 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(61, 61, 61);
+    color: white;
+    font-family: 'Fira Sans Condensed', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
-  
-  body {
-    font-family: Arial, sans-serif;
-  }
-  
+
+/* ───── Navbar ───── */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to top, #2b2b2b, #1d1d1d);
+  padding: 16px 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.logo img {
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: rgb(184, 184, 184);
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
+}
+
+.nav-links a.active {
+  font-weight: bold;
+}
+
+/* ───── Mobile Navbar ───── */
+@media (max-width: 600px) {
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
   }
-  
+
   .logo {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
+    margin-bottom: 16px;
   }
-  
-  .logo img {
-    height: 32px;
-    width: 32px;
-    margin-right: 10px;
-  }
-  
+
   .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
   }
-  
+
   .nav-links a {
-    color: white;
-    text-decoration: none;
     font-size: 1em;
-    transition: color 0.2s;
+  }
+}
+
+ /* Make banner responsive */
+ .banner-container {
+    position: relative;
+    width: 100%;
+    max-width: 90%;
+    margin: 1.6em auto;
+    text-align: center;
+  }
+
+  .banner-container img:first-child {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .banner-container img:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+  }
+
+  /* Intro section */
+  .intro-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #1b1b1b;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    margin: 40px auto;
+    width: 90%;
+    max-width: 800px;
+  }
+
+  .intro-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  .intro-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  .intro-section a {
+    margin: 0 10px;
+    text-decoration: none;
+  }
+
+  .intro-section img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+  }
+
+  .intro-section img:hover {
+    transform: scale(1.1);
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .banner-container img:last-child {
+      height: 120px;
+    }
+
+    .intro-section {
+      padding: 24px 12px;
+    }
+
+    .intro-section h2 {
+      font-size: 2em;
+    }
+
+    .intro-section p {
+      font-size: 1em;
+    }
+  }
+
+  .intro-box {
+    background-color: #1a1a1a;
+    border-left: 5px solid #4caf50;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
   
-  .nav-links a:hover {
-    color: #00bfff;
+  .intro-box h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #ffffff;
   }
+  
+  .intro-box .subheading {
+    font-size: 1.1em;
+    color: #bbbbbb;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  
+  .intro-box p {
+    font-size: 1.05em;
+    color: #dddddd;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+
+/* ───── Reusable Feature Section ───── */
+.feature-section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+.feature-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.feature-card {
+  background-color: #222;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 450px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.feature-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.feature-title {
+  margin-bottom: 10px;
+  font-size: 1.4em;
+}
+
+.feature-description {
+  margin-bottom: 15px;
+  font-size: 1em;
+  color: #ccc;
+}
+
+.feature-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.feature-button.shapeoff   { background-color: #4caf50; }
+.feature-button.bfms       { background-color: #dc3545; }
+.feature-button.ballgame   { background-color: #e7c91d; }
+.feature-button.distancezero { background-color: #610000; }
+.feature-button.farmrice   { background-color: #45cccc; }
+.feature-button.dcm        { background-color: #2cb11f; }
+
+.feature-button:hover {
+  filter: brightness(1.1);
+}
+
+/* ───── Feature Section - Mobile ───── */
+@media (max-width: 600px) {
+  .feature-card { width: 100%; }
+  .section-title { font-size: 2em; }
+  .feature-description { font-size: 0.95em; }
+}
+
+/* ───── Shapeoff Intro ───── */
+.shapeoff-intro {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto 40px;
+}
+
+.shapeoff-intro h2 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.shapeoff-intro p {
+  font-size: 1.2em;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* ───── Episode Grid ───── */
+.episode-grid {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.episode-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.episode-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.episode-button {
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.episode-button.active {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.episode-button.active:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.episode-button.disabled {
+  background-color: transparent;
+  color: #888;
+  border: 2px dashed #666;
+  cursor: not-allowed;
+}
