@@ -42,7 +42,7 @@
           margin-bottom: 60px;
         }
     
-        .episode-title {
+        .title {
           font-size: 2em;
           margin-bottom: 20px;
         }
@@ -109,11 +109,6 @@
   text-align: center;
 }
 
-.extras-title {
-  font-size: 2em;
-  margin-bottom: 30px;
-}
-
 .extras-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -153,6 +148,82 @@
   border-radius: 4px;
   vertical-align: middle;
 }
+.watch-button {
+      background-color: #dc3545;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease;
+    }
+
+    .watch-button:hover {
+      background-color: #c82333;
+    }
+    .fnfmod-grid {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.fnfmod-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.fnfmod-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.fnfmod-track-title {
+  font-size: 1.4em;
+  margin-bottom: 8px;
+}
+
+.fnfmod-composer {
+  font-size: 0.95em;
+  color: #bbb;
+  margin-bottom: 15px;
+}
+
+.custom-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 600px;
+  gap: 10px;
+}
+
+.custom-divider .line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, #555, #999, #555);
+  border-radius: 1px;
+}
+
+.custom-divider .divider-icon {
+  font-size: 1.5em;
+  color: #ccc;
+  padding: 0 10px;
+  user-select: none;
+}
+
 
       </style>
 </head>
@@ -176,6 +247,9 @@
             });
           });
       </script>
+  
+  
+  
 
 <!-- Shapeoff Banner -->
 <div class="banner-container">
@@ -206,11 +280,18 @@
       Today, Shapeoff lives on in screenplay format. With 5 episodes written (some over 40 minutes in length!), the series continues as a surreal blend of satire, mystery, and shape-based drama.
     </p>
   </section>
+
+  <!-- Stylish Divider -->
+<div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">⬤</span>
+    <span class="line"></span>
+  </div>
   
   
   <!-- Episodes Grid -->
   <section class="episode-grid">
-    <h3 class="episode-title">Episodes (Scripts)</h3>
+    <h3 class="title">Episodes (Scripts)</h3>
     <div class="episode-buttons">
   
       <!-- Released Episodes -->
@@ -268,57 +349,142 @@
     </div>
   </section>
 
+  <!-- Stylish Divider -->
+<div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">▲</span>
+    <span class="line"></span>
+  </div>
+
   <!-- Extras Section -->
 <section class="extras-grid">
-    <h3 class="extras-title">Extras</h3>
+    <h3 class="title">Extras</h3>
     <div class="extras-cards">
 
         <div class="extra-card">
-            <h4 class="extra-title">Original Animated Series (YouTube)</h4>
+            <h4 class="extra-title">✨ Original Animated Series (YouTube)</h4>
             <p class="extra-description">The original 2022 animated series.</p>
-            <a href="https://www.youtube.com/playlist?list=PLEvQoFkGfPWxLIG14MIAjOwQKpeSHq0qA" class="feature-button shapeoff">View Playlist (www.youtube.com)</a>
+            <a href="https://www.youtube.com/playlist?list=PLEvQoFkGfPWxLIG14MIAjOwQKpeSHq0qA" target="_blank" class="watch-button">▶ View Playlist</a>
           </div>
-  
+          
+          <div class="extra-card">
+            <h4 class="extra-title">sO do YoU gUyS sTiLl wAnT ScHoOl?</h4>
+            <p class="extra-description">Triangle's had enough of the original Shapeoff 1 cycle and crashes out.</p>
+            <a href="https://youtu.be/eHGnT5KEaR4" target="_blank" class="watch-button">▶ Watch</a>
+          </div>
+
+          <div class="extra-card">
+            <h4 class="extra-title">mafia kid fulfills their life dream of airport terrorism</h4>
+            <p class="extra-description">Another awesome video from Hexagon, now featuring Triangle!! (Anything said in the video is a joke.)</p>
+            <a href="https://youtu.be/WDL8hMSEqb0" target="_blank" class="watch-button">▶ Watch</a>
+          </div>
+          
       <div class="extra-card">
         <h4 class="extra-title">Shape Class 14: Seven<br><span class="tag-13plus">13+</span></h4>
         <p class="extra-description">Circle helps Hexagon conduct a scientific experiment on the anatomy of shapes.</p>
-        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vTGb_t-eAq3TgvoqxuCRK-biYRdl8EmeDXUbYEc9xCcDGaoxzd33YpBKBTpCjqyu3kXmwZcUSYWyB7T/pub" target="_blank" class="feature-button shapeoff">Read Now</a>
       </div>
 
       <div class="extra-card">
         <h4 class="extra-title">Host & Triangle At The Campfire<br><span class="tag-13plus">Mature</span></h4>
         <p class="extra-description">Based on an alternate universe. Host and Triangle share a quiet but eventful moment at a campfire hidden in the woods.</p>
-        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vRsst9MnRvSC9ww8CjoOk5rgsnNOD6FXbo7XcjEMStzI7fBCiRQipyHfYW0dPF0p-C3LIRAr2XM5rex/pub" target="_blank" class="feature-button shapeoff">Read Now</a>
       </div>
 
       <div class="extra-card">
         <h4 class="extra-title">Hexagon's Ultimate Sleep Guide: Sleep Forever!<br><span class="tag-13plus">13+</span></h4>
         <p class="extra-description">Hexagon starts a social media account and hopes to educate people on questionable practices.</p>
-        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vQF6QzsWBwJnaVvMUYi-cFkNm5tQ8kPkrikkLvyBdMU9EB1ZSmzsHVg80vPdXiGeAWRVyuxVyrZRdqH/pub" target="_blank" class="feature-button shapeoff">Read Now</a>
       </div>
 
       <div class="extra-card">
         <h4 class="extra-title">A Day In Shaparis<br><span class="tag-13plus">13+</span></h4>
         <p class="extra-description">Rhombus and Octagon compete to find the best engagement ring for their significant others.</p>
-        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vRP9SOsONF3PTbnBK7DC7_5GNGMdiTkMCCYeoYPFaphrzs1KBXubTgLwCL9dbe1BO_VojinY6usyhNY/pub" target="_blank" class="feature-button shapeoff">Read Now</a>
       </div>
 
       <div class="extra-card">
         <h4 class="extra-title">Save Me Some Semen!<br><span class="tag-13plus">Mature</span></h4>
         <p class="extra-description">Octagon is given a bucket, thinking he can do whatever he wants with it.</p>
-        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vR1x70kjm7ynVN1Hf1rMuwsHMIuwGofdBsJPA0GS2h0Kfgea3Z-BZYNsqqo52tiXijbkEEorSu0vIV0/pub" target="_blank" class="feature-button shapeoff">Read Now</a>
       </div>
   
       <div class="extra-card">
         <h4 class="extra-title">Original Shapeoff 7 Flashback Script</h4>
         <p class="extra-description">This script was part of the original animated Shapeoff 7.</p>
-        <a href="extras/shapeoff-ost.html" class="feature-button shapeoff">View Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vSQwxbThdj9jORmadKX3KZ-kbo4GerbRBCW8vHlrh9xHQWPWA86xrvlb-7uD2oAoHTtTVNW9QH0k6UN/pub" target="_blank" class="feature-button shapeoff">View Now</a>
       </div>
 
       <div class="extra-card">
         <h4 class="extra-title">Original Shapeoff 4 Script (Scrapped)</h4>
         <p class="extra-description">The original Shapeoff 4 script was made back in July 2022 following the release of the animated Shapeoff 3. However, the script never came to life and an alternate version was made by a friend.</p>
-        <a href="extras/shapeoff-ost.html" class="feature-button shapeoff">View Now</a>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vQ2FMxsl5fgg9EGAYr1smXyqzqQj_QKhPaVNWkSAt0aUwbPX5rJEii8vKjqoyquyctgbomKJndvpgw7/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+  
+    </div>
+  </section>
+
+  <!-- Stylish Divider -->
+<div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">■</span>
+    <span class="line"></span>
+  </div>
+  
+
+  <section class="intro-box">
+    <h2>🎵 The Friday Night Funkin' Shapeoff Mod</h2>
+<p class="subheading">A rhythm-based reimagining of the Shapeoff story.</p>
+<p>
+The <strong>Shapeoff Friday Night Funkin' mod</strong> is a creative reinterpretation of the original series, retelling key events through intense musical rap battles between the contestants.
+</p>
+<p>
+Featuring six original tracks composed by TimKS, the mod captures pivotal moments from the animated Shapeoff series. Though the project was never fully completed, each song represents a specific scene or emotional beat — such as <em>Wander</em>, which takes place during the events of Episode 3.
+</p>
+
+  </section>
+
+  <!-- FNF Mod Section -->
+<section class="fnfmod-grid">
+    <h3 class="title">Shapeoff Mod Full Soundtrack (YouTube)</h3>
+
+    <div class="fnfmod-cards">
+  
+      <!-- Songs -->
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">1. Sovereign</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/XXHlBCs1N0s?si=DSb91y4Dcp13M34Z" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">2. Shape-off</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/XXHlBCs1N0s?si=ZOcrbSjALJszp8GF" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">3. DRAW</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/9cM0oUncY-A?si=tdI-aA82go8seCwr" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">4. Wander</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/r8KSnjVOaxA?si=8ZS-45xTOMgLWzEm" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">5. Facility</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/bD9YhkVPiyU?si=QejOeO_BgC3gMchF" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">6. Deformity</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/5Rc3dti-3Z0?si=SbwoBTAtwheh6ist" class="watch-button" target="_blank">▶ Listen</a>
       </div>
   
     </div>
