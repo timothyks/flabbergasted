@@ -101,6 +101,59 @@
           background-color: #222;
           font-size: 1em;
         }
+
+        .extras-grid {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.extras-title {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.extras-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.extra-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.extra-title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.extra-description {
+  font-size: 1em;
+  color: #ccc;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.tag-13plus {
+  background-color: #d22;
+  color: white;
+  font-size: 0.75em;
+  padding: 2px 6px;
+  margin-left: 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
       </style>
 </head>
 <body>
@@ -215,5 +268,60 @@
     </div>
   </section>
 
+  <!-- Extras Section -->
+<section class="extras-grid">
+    <h3 class="extras-title">Extras</h3>
+    <div class="extras-cards">
+
+        <div class="extra-card">
+            <h4 class="extra-title">Original Animated Series (YouTube)</h4>
+            <p class="extra-description">The original 2022 animated series.</p>
+            <a href="https://www.youtube.com/playlist?list=PLEvQoFkGfPWxLIG14MIAjOwQKpeSHq0qA" class="feature-button shapeoff">View Playlist (www.youtube.com)</a>
+          </div>
+  
+      <div class="extra-card">
+        <h4 class="extra-title">Shape Class 14: Seven<br><span class="tag-13plus">13+</span></h4>
+        <p class="extra-description">Circle helps Hexagon conduct a scientific experiment on the anatomy of shapes.</p>
+        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Host & Triangle At The Campfire<br><span class="tag-13plus">Mature</span></h4>
+        <p class="extra-description">Based on an alternate universe. Host and Triangle share a quiet but eventful moment at a campfire hidden in the woods.</p>
+        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Hexagon's Ultimate Sleep Guide: Sleep Forever!<br><span class="tag-13plus">13+</span></h4>
+        <p class="extra-description">Hexagon starts a social media account and hopes to educate people on questionable practices.</p>
+        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">A Day In Shaparis<br><span class="tag-13plus">13+</span></h4>
+        <p class="extra-description">Rhombus and Octagon compete to find the best engagement ring for their significant others.</p>
+        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Save Me Some Semen!<br><span class="tag-13plus">Mature</span></h4>
+        <p class="extra-description">Octagon is given a bucket, thinking he can do whatever he wants with it.</p>
+        <a href="extras/behind-the-shapes.html" class="feature-button shapeoff">Read Now</a>
+      </div>
+  
+      <div class="extra-card">
+        <h4 class="extra-title">Original Shapeoff 7 Flashback Script</h4>
+        <p class="extra-description">This script was part of the original animated Shapeoff 7.</p>
+        <a href="extras/shapeoff-ost.html" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Original Shapeoff 4 Script (Scrapped)</h4>
+        <p class="extra-description">The original Shapeoff 4 script was made back in July 2022 following the release of the animated Shapeoff 3. However, the script never came to life and an alternate version was made by a friend.</p>
+        <a href="extras/shapeoff-ost.html" class="feature-button shapeoff">View Now</a>
+      </div>
+  
+    </div>
+  </section>
 </body>
 </html>
