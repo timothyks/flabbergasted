@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/icon.jpg" type="image/jpg" />
+  <title>Character Bios - Shapeoff</title>
+  <style>
+    /* Intro Section */
+    .intro-box {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .intro-box h2 {
+      font-size: 2.4em;
+    }
+
+    .intro-box p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    /* Section Title */
+    .character-section {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .character-section h3 {
+  font-size: 1.8em; /* Adjust section title size */
+  color: white;
+  border-bottom: 2px solid #666;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+    /* Cards */
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller cards */
+  gap: 15px; /* Decrease gap between cards */
+}
+
+.character-card {
+  position: relative;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.2s ease;
+  border-top: 4px solid var(--accent, #5c5cff); /* Default fallback */
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+}
+
+.character-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-bottom: 3px solid var(--accent, #5c5cff);
+}
+
+.character-info {
+  padding: 15px;
+}
+
+.character-name {
+  font-size: 1.2em; /* Slightly smaller name */
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* Larger tags */
+.character-tag {
+  display: inline-block;
+  background-color: var(--accent, #5c5cff);
+  font-size: 1em; /* Increased tag size */
+  padding: 5px 10px; /* More padding */
+  margin-top: 6px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+}
+
+    /* Divider */
+    .custom-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px auto;
+      width: 100%;
+      max-width: 600px;
+      gap: 10px;
+    }
+
+    .custom-divider .line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, #555, #999, #555);
+      border-radius: 1px;
+    }
+
+    .custom-divider .divider-icon {
+      font-size: 1.5em;
+      color: #ccc;
+      padding: 0 10px;
+    }
+
+    .with-logo-bg {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.with-logo-bg .logo-bg {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background-image: url('images/shapeoff-logo.png'); /* replace with your actual path */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.06;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.with-logo-bg h2,
+.with-logo-bg p {
+  position: relative;
+  z-index: 2;
+}
+
+
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+
+        const links = document.querySelectorAll('.nav-links a');
+        const currentPage = window.location.pathname.split('/').pop();
+        links.forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+  </script>
+<!-- Divider -->
+  <div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">⚠️ SPOILER WARNING ⚠️</span>
+    <span class="line"></span>
+  </div>
+<section class="intro-box with-logo-bg">
+  <div class="logo-bg"></div>
+  <h2>Shapeoff Character Bios</h2>
+  <p>Explore the cast of Shapeoff — who they are, what they want, and the secrets they hide.</p>
+</section>
+
+
+  
+
+  <!-- contestants -->
+  <section class="character-section">
+    <h3>Contestants</h3>
+    <div class="character-grid">
+
+      <div class="character-card" style="--accent: #314ffd;">
+        <img src="images/flabbergasted.png" alt="Circle" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Circle</div>
+          <div class="character-tag">Teacher</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #ff178f;">
+        <img src="images/flabbergasted.png" alt="Triangle" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Triangle</div>
+          <div class="character-tag">Misfortunate</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #0b0ea8;">
+        <img src="images/flabbergasted.png" alt="Square" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Square</div>
+          <div class="character-tag">Whisper</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #18e622;">
+        <img src="images/flabbergasted.png" alt="Rectangle" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Rectangle</div>
+          <div class="character-tag">Peppy</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #9d10df;">
+        <img src="images/flabbergasted.png" alt="Hexagon" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Hexagon</div>
+          <div class="character-tag">Anarchy</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #970008;">
+        <img src="images/flabbergasted.png" alt="Octagon" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Octagon</div>
+          <div class="character-tag">Snark</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #ff6f0f;">
+        <img src="images/flabbergasted.png" alt="Oval" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Oval</div>
+          <div class="character-tag">Somber</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #ffda35;">
+        <img src="images/flabbergasted.png" alt="Pentagon" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Pentagon</div>
+          <div class="character-tag">Keen</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #4fadec;">
+        <img src="images/flabbergasted.png" alt="Rhombus" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Rhombus</div>
+          <div class="character-tag">Testy</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #ff4362;">
+        <img src="images/flabbergasted.png" alt="Trapezoid" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Trapezoid</div>
+          <div class="character-tag">Cryptic</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #ff0037;">
+        <img src="images/flabbergasted.png" alt="Nonagon" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Nonagon</div>
+          <div class="character-tag">Mediator</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- other -->
+  <section class="character-section">
+    <h3>Non-Contestants</h3>
+    <div class="character-grid">
+      
+      <div class="character-card" style="--accent: #ffc31d;">
+        <img src="images/flabbergasted.png" alt="Host" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Host</div>
+          <div class="character-tag">Enigma</div>
+        </div>
+      </div>
+
+<div class="character-card" style="--accent: #f11515;">
+        <img src="images/flabbergasted.png" alt="Sphere" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Sphere</div>
+          <div class="character-tag">Heir</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #ff76c1;">
+        <img src="images/flabbergasted.png" alt="Heart" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Heart</div>
+          <div class="character-tag">Nurse</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #945e2b;">
+        <img src="images/flabbergasted.png" alt="Cross" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Cross</div>
+          <div class="character-tag">Doctor</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #949494;">
+        <img src="images/flabbergasted.png" alt="Table Soldier" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Table Soldier</div>
+          <div class="character-tag">Guard</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="character-section">
+    <h3>Minor Characters / Not Enough Information</h3>
+    <div class="character-grid">
+      
+      <div class="character-card" style="--accent: #000000;">
+        <img src="images/flabbergasted.png" alt="'Unknown'" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">"Unknown"</div>
+          <div class="character-tag">Regent</div>
+        </div>
+      </div>
+
+
+
+      <div class="character-card" style="--accent: #f3b645;">
+        <img src="images/flabbergasted.png" alt="McCircle's Worker" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">McCircle's Worker</div>
+          <div class="character-tag">Worker</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #d43131;">
+        <img src="images/flabbergasted.png" alt="McCircle's Manager" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">McCircle's Manager</div>
+          <div class="character-tag">Manager</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #147219;">
+        <img src="images/flabbergasted.png" alt="Papa Polygon's Worker" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Papa Polygon's Worker</div>
+          <div class="character-tag">Worker</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #af373d;">
+        <img src="images/flabbergasted.png" alt="Five Shapes Worker" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Five Shapes Worker</div>
+          <div class="character-tag">Worker</div>
+        </div>
+      </div>
+
+<div class="character-card" style="--accent: #0018df;">
+        <img src="images/flabbergasted.png" alt="Hexagon's Father" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Hexagon's Father</div>
+          <div class="character-tag">Loving</div>
+        </div>
+      </div>
+
+      <div class="character-card" style="--accent: #9d00ff;">
+        <img src="images/flabbergasted.png" alt="Hexagon's Mother" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Hexagon's Mother</div>
+          <div class="character-tag">Caring</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="character-card" style="--accent: #5a7080;">
+      <img src="images/flabbergasted.png" alt="Alleyway Shape" class="character-image" />
+      <div class="character-info">
+        <div class="character-name">Alleyway Shape</div>
+        <div class="character-tag">Vendor</div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+</body>
+</html>
