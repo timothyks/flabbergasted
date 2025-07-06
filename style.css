@@ -20,26 +20,33 @@ body {
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(to top, #2b2b2b, #1d1d1d);
-  padding: 16px 32px;
+  padding: 14px 28px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   flex-wrap: wrap;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.4em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
 
-.logo img {
-  height: 32px;
-  width: 32px;
-  margin-right: 10px;
-}
+  .logo img {
+    height: 32px;
+    width: 32px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  .logo span {
+    display: inline-block;
+    line-height: 1;
+  }
 
 .nav-links {
+    align-items: center;
   list-style: none;
   display: flex;
   gap: 20px;
