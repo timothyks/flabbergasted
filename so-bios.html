@@ -418,6 +418,9 @@
         trapezoid: [
           { src: "images/trapezoid.png", title: "" },
         ],
+        rhombus: [
+          { src: "images/rhombus.png", title: "" },
+        ],
         octagon: [
           { src: "images/octagon-armless.png", title: "Episode 1-4" },
           { src: "images/octagon-armful.png", title: "Episode 5+" },
@@ -739,8 +742,47 @@
             </div>
           </div>
         `,
+        rhombus: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("rhombus")}
+              <div class="profile-info">
+                <h2 class="char-name">Rhombus</h2>
+                <p class="char-quote">"Then we have to get the water out. Let me put it in your hands."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 17</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Rhombus has an enormous ego and tends to look down on other shapes that aren't like her. But, deep down inside, she's a great team member with amazing leadership skills that will (maybe) make her team secure victory every time. She is not a total brat, as she can see when she has done wrong herself.
+                </p>
+              </div>
+            </div>
 
-        // Add more characters here...
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Rhombus thinks that she's better than most of her classmates.</li>
+                <li>Rhombus complains even in the most dire of times.</li>
+                <li>The scope of what Rhombus cherishes is very small, usually containing things that would make her relax.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Rhombus was raised in a rich family in the city. She enrolled into the school and moved out on her own accord.</li>
+                <li>Rhombus forgets what she competed for in Shapeoff.</li>
+                <li>Rhombus' talent to lead stems from her somewhat narcissistic viewpoint of the world.</li>
+                <li>Growing up, Rhombus was surrounded by Shapelanders who looked down on others.</li>
+                <li>Rhombus tends to grow apathetic to a task that is drawn out or uninteresting.</li>
+                <li>Rhombus had almost no backstory in the original YouTube series; She was annoying because she was simply that way.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+
+        // more characters here...
       };
 
       const cards = document.querySelectorAll('.character-card');
@@ -868,8 +910,8 @@
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #4fadec;">
-        <img src="images/shapeoff-logo.png" alt="Rhombus" class="character-image" />
+      <div class="character-card" style="--accent: #4fadec;" data-character-id="rhombus">
+        <img src="images/rhombus.png" alt="Rhombus" class="character-image" />
         <div class="character-info">
           <div class="character-name">Rhombus</div>
           <div class="character-tag">Testy</div>
@@ -1049,7 +1091,7 @@
   <div class="popup-content">
     <span class="popup-close" onclick="closePopup()">&times;</span>
     <div id="popup-inner">
-      <!-- Dynamic character content will go here -->
+      <!-- content will go here -->
     </div>
   </div>
 </div>
