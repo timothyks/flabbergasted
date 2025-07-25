@@ -34,65 +34,72 @@
     }
 
     .character-section h3 {
-  font-size: 1.8em; /* Adjust section title size */
-  color: white;
-  border-bottom: 2px solid #666;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
+      font-size: 1.8em; /* Adjust section title size */
+      color: white;
+      border-bottom: 2px solid #666;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
 
     /* Cards */
-.character-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller cards */
-  gap: 15px; /* Decrease gap between cards */
-}
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+      gap: 15px;
+    }
 
-.character-card {
-  position: relative;
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  overflow: hidden;
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  transition: transform 0.2s ease;
-  border-top: 4px solid var(--accent, #5c5cff); /* Default fallback */
-}
+    .character-card {
+      position: relative;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transition: transform 0.2s ease;
+      border-top: 4px solid var(--accent, #5c5cff); /* Default fallback */
+    }
 
-.character-card:hover {
-  transform: translateY(-5px);
-}
+    .character-card.unavailable {
+      opacity: 0.4;
+      filter: grayscale(100%);
+      border: 2px dashed #aaa;
+      pointer-events: none; /* disables clicking */
+    }
 
-.character-image {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-bottom: 3px solid var(--accent, #5c5cff);
-}
+    .character-card:hover {
+      transform: translateY(-5px);
+    }
 
-.character-info {
-  padding: 8px;
-}
+    .character-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-bottom: 3px solid var(--accent, #5c5cff);
+    }
 
-.character-name {
-  font-size: 1.2em; /* Slightly smaller name */
-  font-weight: bold;
-  margin-bottom: 2px;
-}
+    .character-info {
+      padding: 8px;
+    }
 
-/* Larger tags */
-.character-tag {
-  display: inline-block;
-  background-color: var(--accent, #5c5cff);
-  font-size: 1.2em; /* Increased tag size */
-  padding: 5px 10px; /* More padding */
-  margin-top: 2px;
-  border-radius: 4px;
-  color: white;
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.651);
-  font-weight: bold;
-}
+    .character-name {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    
+    .character-tag {
+      display: inline-block;
+      background-color: var(--accent, #5c5cff);
+      font-size: 1.2em;
+      padding: 5px 10px; 
+      margin-top: 2px;
+      border-radius: 4px;
+      color: white;
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.651);
+      font-weight: bold;
+    }
 
     /* Divider */
     .custom-divider {
@@ -119,33 +126,136 @@
     }
 
     .with-logo-bg {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-.with-logo-bg .logo-bg {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
-  background-image: url('images/shapeoff-logo.png'); /* replace with your actual path */
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  opacity: 0.06;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
+    .with-logo-bg .logo-bg {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 300px;
+      background-image: url('images/shapeoff-logo.png'); 
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      opacity: 0.06;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
 
-.with-logo-bg h2,
-.with-logo-bg p {
-  position: relative;
-  z-index: 2;
-}
+    .with-logo-bg h2,
+    .with-logo-bg p {
+      position: relative;
+      z-index: 2;
+    }
 
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 15, 15, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background: #1e1e1e;
+      color: white;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2em;
+      cursor: pointer;
+      color: #aaa;
+      transition: color 0.2s;
+    }
+
+   
+
+    
+
+    .popup-close:hover {
+      color: white;
+    }
+
+    .character-profile {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .profile-header {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .profile-art {
+      width: 240px;
+      height: auto;
+      border-radius: 16px;
+      background: #222;
+      object-fit: contain;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .char-name {
+      font-size: 2rem;
+      margin-bottom: 0.3em;
+    }
+
+    .char-quote {
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 1em;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.5rem;
+    }
+
+    .char-meta span {
+      display: inline-block;
+      margin-right: 1em;
+      font-weight: bold;
+      color: #999;
+    }
+
+    .char-description {
+      margin-top: 1em;
+      line-height: 1.5;
+    }
+
+    .char-details h3 {
+      margin-bottom: 0.4em;
+      color: #fff;
+    }
+
+    .char-details ul {
+      list-style: disc;
+      padding-left: 1.5em;
+      margin-bottom: 1em;
+    }
 
   </style>
 </head>
@@ -165,6 +275,133 @@
           }
         });
       });
+
+
+
+      function openPopup(characterHTML) {
+        document.getElementById("popup-inner").innerHTML = characterHTML;
+        document.getElementById("character-popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("character-popup").style.display = "none";
+      }
+
+      const characterProfiles = {
+        circle: `
+          <div class="character-profile">
+            <div class="profile-header">
+              <img src="images/circle.png" class="profile-art" alt="Official art" />
+              <div class="profile-info">
+                <h2 class="char-name">Circle</h2>
+                <p class="char-quote">"Don't get your hopes too high, Trapezoid. You're fast, but you're not an adult, or a qualified teacher!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span> <!-- options: ♀ ♂ ⚧ -->
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 25</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Circle is really confident, always calling himself an "adult" or a "qualified teacher". Despite his constant gloating, he proves to surprisingly be a really good educator. However, he has constant nightmares about killing his own students, which only stopped after the school was demolished by Hexagon in "Shapeoff 1: A Rocky Start".
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Circle likes to call himself an adult or a qualified teacher.</li>
+                <li>Circle tends to take initiative in times of distress, like in "Shapeoff 5: BREAK-IT BRAWL".</li>
+                <li>Although appearing rather apathetic towards many things, Circle genuinely cares about his students and others around him.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Circle is one of the first characters to ever come to life, with concepts dating back to 2017 in a green notebook.</li>
+                <li>It used to be canon that Circle had some ties to Evil Circle, but now they're individual people lacking any sort of connection.</li>
+                <li>Circle is one of the only educators in the entirety of the Shapelands.</li>
+                <li>Circle has the worst track record of any of the contestants, having been eliminated first in both the original YouTube series and in the scripts.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        triangle: `
+          <div class="character-profile">
+            <div class="profile-header">
+              <img src="images/triangle.png" class="profile-art" alt="Official art" />
+              <div class="profile-info">
+                <h2 class="char-name">Triangle</h2>
+                <p class="char-quote">"NONAGON, IT'S NOW OR NEVER!!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 16</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Triangle is an average, rather encouraging teenage girl. She used to work at McCircles, a chain fast food restaurant, with her friend, Nonagon. It was an escape from the boring life she has at school. She has always been quite the competitive type because of her sharp mind, and gets ticked off pretty easily. Her personality is also quite… explosive, explaining her mutual respect with Hexagon..
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Triangle is usually more compassionate than most of the contestants.</li>
+                <li>Triangle is one of the most intelligent characters and has a lot of common sense.</li>
+                <li>Triangle doesn't want to be forgotten again.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Triangle's canonical color and gender have changed over the years. First she was male and magenta, then she became female and orange, and then finally to female and magenta.</li>
+                <li>There used to be lore where the most intelligent characters had evil counterparts, which is how Evil Triangle was born, but that's not canon anymore. They are two completely different people.</li>
+                <li>Triangle has stayed at the Shapeland's leading orphanage, Overhaul Orphanage.</li>
+                <li>Triangle did not read the fine print while applying for a job at McCircle's.</li>
+                <li>Triangle and Nonagon have a long-lasting friendship dating back to when they were still in school.</li>
+                <li>Triangle was oblivious to how Nonagon disappeared for a long time. It took a long time for her to recover mentally as there was no closure to what happened.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+
+        // Add more characters here...
+      };
+
+      const cards = document.querySelectorAll('.character-card');
+
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          const characterId = card.getAttribute('data-character-id');
+          const accentColor = getComputedStyle(card).getPropertyValue('--accent');
+
+          const popup = document.querySelector('.character-profile');
+          popup.style.setProperty('--accent', accentColor);
+
+          popup.innerHTML = characterTemplates[characterId];
+        });
+      });
+
+      // Attach character card event listeners once DOM is ready
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".character-card:not(.unavailable)").forEach(card => {
+          card.addEventListener("click", () => {
+            const id = card.dataset.characterId;
+            const accentColor = getComputedStyle(card).getPropertyValue('--accent');
+
+            if (characterProfiles[id]) {
+              // Set popup accent before showing
+              const popup = document.getElementById("character-popup");
+              popup.style.setProperty('--accent', accentColor.trim());
+
+              // Show popup
+              openPopup(characterProfiles[id]);
+            }
+          });
+        });
+      });
+
+
   </script>
 <!-- Divider -->
   <div class="custom-divider">
@@ -172,13 +409,19 @@
     <span class="divider-icon">⚠️ SPOILER WARNING ⚠️</span>
     <span class="line"></span>
   </div>
+
 <section class="intro-box with-logo-bg">
   <div class="logo-bg"></div>
   <h2>Shapeoff Character Bios</h2>
   <p>Explore the cast of Shapeoff — who they are, what they want, and the secrets they hide.</p>
 </section>
 
-
+<!-- Divider -->
+  <div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">🛠️ This page is a work in progress! 🛠️</span>
+    <span class="line"></span>
+  </div>
   
 
   <!-- contestants -->
@@ -186,88 +429,88 @@
     <h3>Contestants</h3>
     <div class="character-grid">
 
-      <div class="character-card" style="--accent: #314ffd;">
-        <img src="images/flabbergasted.png" alt="Circle" class="character-image" />
+      <div class="character-card" style="--accent: #314ffd;" data-character-id="circle">
+        <img src="images/circle.png" alt="Circle" class="character-image" />
         <div class="character-info">
           <div class="character-name">Circle</div>
           <div class="character-tag">Teacher</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #ff178f;">
-        <img src="images/flabbergasted.png" alt="Triangle" class="character-image" />
+      <div class="character-card" style="--accent: #ff178f;" data-character-id="triangle">
+        <img src="images/triangle.png" alt="Triangle" class="character-image" />
         <div class="character-info">
           <div class="character-name">Triangle</div>
           <div class="character-tag">Misfortunate</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #0b0ea8;">
-        <img src="images/flabbergasted.png" alt="Square" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #0b0ea8;">
+        <img src="images/shapeoff-logo.png" alt="Square" class="character-image" />
         <div class="character-info">
           <div class="character-name">Square</div>
           <div class="character-tag">Whisper</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #18e622;">
-        <img src="images/flabbergasted.png" alt="Rectangle" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #18e622;">
+        <img src="images/shapeoff-logo.png" alt="Rectangle" class="character-image" />
         <div class="character-info">
           <div class="character-name">Rectangle</div>
           <div class="character-tag">Peppy</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #9d10df;">
-        <img src="images/flabbergasted.png" alt="Hexagon" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #9d10df;">
+        <img src="images/shapeoff-logo.png" alt="Hexagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Hexagon</div>
           <div class="character-tag">Anarchy</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #970008;">
-        <img src="images/flabbergasted.png" alt="Octagon" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #970008;">
+        <img src="images/shapeoff-logo.png" alt="Octagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Octagon</div>
           <div class="character-tag">Snark</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #ff6f0f;">
-        <img src="images/flabbergasted.png" alt="Oval" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #ff6f0f;">
+        <img src="images/shapeoff-logo.png" alt="Oval" class="character-image" />
         <div class="character-info">
           <div class="character-name">Oval</div>
           <div class="character-tag">Somber</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #ffda35;">
-        <img src="images/flabbergasted.png" alt="Pentagon" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #ffda35;">
+        <img src="images/shapeoff-logo.png" alt="Pentagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Pentagon</div>
           <div class="character-tag">Keen</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #4fadec;">
-        <img src="images/flabbergasted.png" alt="Rhombus" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #4fadec;">
+        <img src="images/shapeoff-logo.png" alt="Rhombus" class="character-image" />
         <div class="character-info">
           <div class="character-name">Rhombus</div>
           <div class="character-tag">Testy</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #ff4362;">
-        <img src="images/flabbergasted.png" alt="Trapezoid" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #ff4362;">
+        <img src="images/shapeoff-logo.png" alt="Trapezoid" class="character-image" />
         <div class="character-info">
           <div class="character-name">Trapezoid</div>
           <div class="character-tag">Cryptic</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #ff0037;">
-        <img src="images/flabbergasted.png" alt="Nonagon" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #ff0037;">
+        <img src="images/shapeoff-logo.png" alt="Nonagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Nonagon</div>
           <div class="character-tag">Mediator</div>
@@ -282,48 +525,48 @@
     <h3>Non-Contestants</h3>
     <div class="character-grid">
       
-      <div class="character-card" style="--accent: #ffc31d;">
-        <img src="images/flabbergasted.png" alt="Host" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #ffc31d;">
+        <img src="images/shapeoff-logo.png" alt="Host" class="character-image" />
         <div class="character-info">
           <div class="character-name">Host</div>
           <div class="character-tag">Enigma</div>
         </div>
       </div>
 
-<div class="character-card" style="--accent: #f11515;">
-        <img src="images/flabbergasted.png" alt="Sphere" class="character-image" />
+<div class="character-card unavailable" style="--accent: #f11515;">
+        <img src="images/shapeoff-logo.png" alt="Sphere" class="character-image" />
         <div class="character-info">
           <div class="character-name">Sphere</div>
           <div class="character-tag">Heir</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #c1ff70;">
-        <img src="images/flabbergasted.png" alt="Decagon" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #c1ff70;">
+        <img src="images/shapeoff-logo.png" alt="Decagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Decagon</div>
           <div class="character-tag">Genie</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #ff76c1;">
-        <img src="images/flabbergasted.png" alt="Heart" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #ff76c1;">
+        <img src="images/shapeoff-logo.png" alt="Heart" class="character-image" />
         <div class="character-info">
           <div class="character-name">Heart</div>
           <div class="character-tag">Nurse</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #945e2b;">
-        <img src="images/flabbergasted.png" alt="Cross" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #945e2b;">
+        <img src="images/shapeoff-logo.png" alt="Cross" class="character-image" />
         <div class="character-info">
           <div class="character-name">Cross</div>
           <div class="character-tag">Doctor</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #949494;">
-        <img src="images/flabbergasted.png" alt="Table Soldier" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #949494;">
+        <img src="images/shapeoff-logo.png" alt="Table Soldier" class="character-image" />
         <div class="character-info">
           <div class="character-name">Table Soldier</div>
           <div class="character-tag">Guard</div>
@@ -337,8 +580,8 @@
     <h3>Minor Characters / Not Enough Information</h3>
     <div class="character-grid">
       
-      <div class="character-card" style="--accent: #000000;">
-        <img src="images/flabbergasted.png" alt="'Unknown'" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #000000;">
+        <img src="images/shapeoff-logo.png" alt="'Unknown'" class="character-image" />
         <div class="character-info">
           <div class="character-name">"Unknown"</div>
           <div class="character-tag">Regent</div>
@@ -347,63 +590,95 @@
 
 
 
-      <div class="character-card" style="--accent: #f3b645;">
-        <img src="images/flabbergasted.png" alt="McCircle's Worker" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #f3b645;">
+        <img src="images/shapeoff-logo.png" alt="McCircle's Worker" class="character-image" />
         <div class="character-info">
           <div class="character-name">McCircle's Worker</div>
           <div class="character-tag">Worker</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #d43131;">
-        <img src="images/flabbergasted.png" alt="McCircle's Manager" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #d43131;">
+        <img src="images/shapeoff-logo.png" alt="McCircle's Manager" class="character-image" />
         <div class="character-info">
           <div class="character-name">McCircle's Manager</div>
           <div class="character-tag">Manager</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #147219;">
-        <img src="images/flabbergasted.png" alt="Papa Polygon's Worker" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #147219;">
+        <img src="images/shapeoff-logo.png" alt="Papa Polygon's Worker" class="character-image" />
         <div class="character-info">
           <div class="character-name">Papa Polygon's Worker</div>
           <div class="character-tag">Worker</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #af373d;">
-        <img src="images/flabbergasted.png" alt="Five Shapes Worker" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #af373d;">
+        <img src="images/shapeoff-logo.png" alt="Five Shapes Worker" class="character-image" />
         <div class="character-info">
           <div class="character-name">Five Shapes Worker</div>
           <div class="character-tag">Worker</div>
         </div>
       </div>
 
-<div class="character-card" style="--accent: #0018df;">
-        <img src="images/flabbergasted.png" alt="Hexagon's Father" class="character-image" />
+<div class="character-card unavailable" style="--accent: #0018df;">
+        <img src="images/shapeoff-logo.png" alt="Hexagon's Father" class="character-image" />
         <div class="character-info">
           <div class="character-name">Hexagon's Father</div>
           <div class="character-tag">Loving</div>
         </div>
       </div>
 
-      <div class="character-card" style="--accent: #9d00ff;">
-        <img src="images/flabbergasted.png" alt="Hexagon's Mother" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #9d00ff;">
+        <img src="images/shapeoff-logo.png" alt="Hexagon's Mother" class="character-image" />
         <div class="character-info">
           <div class="character-name">Hexagon's Mother</div>
           <div class="character-tag">Caring</div>
         </div>
       </div>
-      <div class="character-card" style="--accent: #5a7080;">
-        <img src="images/flabbergasted.png" alt="Alleyway Shape" class="character-image" />
+      <div class="character-card unavailable" style="--accent: #5a7080;">
+        <img src="images/shapeoff-logo.png" alt="Alleyway Shape" class="character-image" />
         <div class="character-info">
           <div class="character-name">Alleyway Shape</div>
           <div class="character-tag">Vendor</div>
         </div>
       </div>
+      <div class="character-card unavailable" style="--accent: #ff0000;">
+        <img src="images/shapeoff-logo.png" alt="Evil Circle" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Evil Circle</div>
+          <div class="character-tag">Tyrant</div>
+        </div>
+      </div>
+      <div class="character-card unavailable" style="--accent: #b84beb;">
+        <img src="images/shapeoff-logo.png" alt="Evil Triangle" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Evil Triangle</div>
+          <div class="character-tag">Tyrant</div>
+        </div>
+      </div>
+      <div class="character-card unavailable" style="--accent: #001e72;">
+        <img src="images/shapeoff-logo.png" alt="Evil Square" class="character-image" />
+        <div class="character-info">
+          <div class="character-name">Evil Square</div>
+          <div class="character-tag">Tyrant</div>
+        </div>
+      </div>
     </div>
   </div>
   </section>
+
+  <!-- Fullscreen Character Popup -->
+<div id="character-popup" class="popup-overlay">
+  <div class="popup-content">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <div id="popup-inner">
+      <!-- Dynamic character content will go here -->
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
