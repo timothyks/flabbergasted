@@ -257,6 +257,55 @@
       margin-bottom: 1em;
     }
 
+    .profile-art-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-art {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .art-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.3);
+      border: none;
+      color: white;
+      font-size: 1.5em;
+      cursor: pointer;
+      padding: 0.2em 0.5em;
+      user-select: none;
+    }
+
+    .art-arrow.left {
+      left: 10px;
+    }
+
+    .art-arrow.right {
+      right: 10px;
+    }
+
+    .art-counter {
+      margin-top: 0.5em;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .art-title {
+      margin-top: 8px;
+      font-style: italic;
+      font-size: 0.9em;
+      text-align: center;
+    }
+
+
   </style>
 </head>
 <body>
@@ -281,17 +330,94 @@
       function openPopup(characterHTML) {
         document.getElementById("popup-inner").innerHTML = characterHTML;
         document.getElementById("character-popup").style.display = "flex";
+
+        const wrapper = document.querySelector(".profile-art-wrapper");
+        if (wrapper) {
+          const characterId = wrapper.dataset.characterId;
+          enableArtSwitching(characterId);
+        }
       }
 
       function closePopup() {
         document.getElementById("character-popup").style.display = "none";
       }
 
+      function generateArtHTML(characterId) {
+        const arts = characterArtImages[characterId];
+        if (!arts || arts.length === 0) return "";
+
+        if (arts.length === 1) {
+          return `
+            <div class="profile-art-wrapper single" data-character-id="${characterId}">
+              <img src="${arts[0].src}" class="profile-art" alt="Official art" />
+              <div class="art-title">${arts[0].title}</div>
+            </div>`;
+        }
+
+        return `
+          <div class="profile-art-wrapper" data-character-id="${characterId}">
+            <button class="art-arrow left">&lt;</button>
+            <img src="${arts[0].src}" class="profile-art" alt="Official art" />
+            <button class="art-arrow right">&gt;</button>
+            <div class="art-counter">1 / ${arts.length}</div>
+            <div class="art-title">${arts[0].title}</div>
+          </div>
+        `;
+      }
+
+      function enableArtSwitching(characterId) {
+        const arts = characterArtImages[characterId];
+        if (!arts || arts.length <= 1) return;
+
+        let index = 0;
+        const artImg = document.querySelector(".profile-art");
+        const counter = document.querySelector(".art-counter");
+        const title = document.querySelector(".art-title");
+        const leftBtn = document.querySelector(".art-arrow.left");
+        const rightBtn = document.querySelector(".art-arrow.right");
+
+        function updateArt() {
+          artImg.src = arts[index].src;
+          counter.textContent = `${index + 1} / ${arts.length}`;
+          title.textContent = arts[index].title;
+        }
+
+        leftBtn.addEventListener("click", () => {
+          index = (index - 1 + arts.length) % arts.length;
+          updateArt();
+        });
+
+        rightBtn.addEventListener("click", () => {
+          index = (index + 1) % arts.length;
+          updateArt();
+        });
+
+        updateArt(); // initialize display
+      }
+
+
+      const characterArtImages = {
+        circle: [
+          { src: "images/circle.png", title: "" },
+        ],
+        triangle: [
+          { src: "images/triangle.png", title: "" },
+        ],
+        oval: [
+          { src: "images/oval.png", title: "" },
+        ],
+        octagon: [
+          { src: "images/octagon-armless.png", title: "Before Episode 5" },
+          { src: "images/octagon-armful.png", title: "Episode 5+" },
+        ],
+        // more characters here
+      };
+
       const characterProfiles = {
         circle: `
           <div class="character-profile">
             <div class="profile-header">
-              <img src="images/circle.png" class="profile-art" alt="Official art" />
+              ${generateArtHTML("circle")}
               <div class="profile-info">
                 <h2 class="char-name">Circle</h2>
                 <p class="char-quote">"Don't get your hopes too high, Trapezoid. You're fast, but you're not an adult, or a qualified teacher!"</p>
@@ -328,7 +454,7 @@
         triangle: `
           <div class="character-profile">
             <div class="profile-header">
-              <img src="images/triangle.png" class="profile-art" alt="Official art" />
+              ${generateArtHTML("triangle")}
               <div class="profile-info">
                 <h2 class="char-name">Triangle</h2>
                 <p class="char-quote">"NONAGON, IT'S NOW OR NEVER!!"</p>
@@ -339,7 +465,7 @@
                   <span class="age">Status: Alive</span>
                 </div>
                 <p class="char-description">
-                  Triangle is an average, rather encouraging teenage girl. She used to work at McCircles, a chain fast food restaurant, with her friend, Nonagon. It was an escape from the boring life she has at school. She has always been quite the competitive type because of her sharp mind, and gets ticked off pretty easily. Her personality is also quite… explosive, explaining her mutual respect with Hexagon..
+                  Triangle is an average, rather encouraging teenage girl. She used to work at McCircles, a chain fast food restaurant, with her friend, Nonagon. It was an escape from the boring life she has at school. She has always been quite the competitive type because of her sharp mind, and gets ticked off pretty easily. Her personality is also quite… explosive, explaining her mutual respect with Hexagon.
                 </p>
               </div>
             </div>
@@ -360,6 +486,83 @@
                 <li>Triangle did not read the fine print while applying for a job at McCircle's.</li>
                 <li>Triangle and Nonagon have a long-lasting friendship dating back to when they were still in school.</li>
                 <li>Triangle was oblivious to how Nonagon disappeared for a long time. It took a long time for her to recover mentally as there was no closure to what happened.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        oval: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("oval")}
+              <div class="profile-info">
+                <h2 class="char-name">Oval</h2>
+                <p class="char-quote">"I’m just saying that maybe I could finally make a new friend."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 18</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Oval's story begins with him being born into a poor family, which means he has worked harder than most shapes in the Shapelands. While he used to be quite the cheerful one as a kid, he's since grown a lot more monotone the more he realized how hard of a hand life dealt him, specifically centered around the death of his older brother in a freak accident. Oval's specialty in being a mechanic was inspired by his sibling, dying doing what he loved most. Oval cares a lot about Pentagon, as he sees him as the brother he longed to have once more. Oval's a hard-working person, and even though he's fallen multiple times, he's always gotten back up.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Oval shows traits of depression early on in in the show, but his bond with Pentagon deteriorates them.</li>
+                <li>Oval is quite a loner, not having many people to watch his back. He's grown used to it.</li>
+                <li>Oval can also be quite hard-headed at times.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Oval befriended Triangle back in his younger years, but their friendship started to drift apart as they got older.</li>
+                <li>Oval's hat, which says "YM" (abbreviated to "your mom") was gifted to him by his older brother shortly before his passing.</li>
+                <li>Back way before Shapeoff was even a thing, Oval didn't have arms.</li>
+                <li>In the original Shapeoff, Oval got 4th place overall, compared to his 9th place concurrently.</li>
+                <li>Oval canonically has a Texan accent.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        octagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("octagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Octagon</h2>
+                <p class="char-quote">"I'm only here because you paid me to be here."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 10</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Octagon's usually chill… unless you get on his nerves; and that can happen really easily. He's always feeling unsure of the current social situation he is put in, and you can tell who he likes and dislikes really easily. You could say it's the best of both worlds. The only shape he has a strongly positive relationship with is Hexagon, as they share a sibling-like bond with each other.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Octagon has trust issues, as he always questions things before acting.</li>
+                <li>Octagon used to have anger issues when he was younger, but has since become more calm.</li>
+                <li>Under times of need, Octagon usually chooses to put others before him, even though it may be marginal.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Octagon is mildly agitated at the world around him almost all the time for really no reason.</li>
+                <li>Octagon was never supposed to grow arms in the duration of the series, but he did in Shapeoff 5 to show a time skip of a couple of weeks.</li>
+                <li>Octagon was way more hotheaded and annoying in the original YouTube series, but that has since dialed down.</li>
+                <li>Octagon chose to hold onto life in "Shapeoff 6: Split by Stone" because he didn't want to accept defeat that easily.</li>
+                <li>Octagon doesn't want to openly display Decagon as he fears that he may lose his wishes... and also a friend.</li>
+                <li>Octagon's least favorite person is Rhombus by far.</li>
               </ul>
             </div>
           </div>
@@ -469,16 +672,16 @@
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #970008;">
-        <img src="images/shapeoff-logo.png" alt="Octagon" class="character-image" />
+      <div class="character-card" style="--accent: #970008;" data-character-id="octagon">
+        <img src="images/octagon-armful.png" alt="Octagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Octagon</div>
           <div class="character-tag">Snark</div>
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #ff6f0f;">
-        <img src="images/shapeoff-logo.png" alt="Oval" class="character-image" />
+      <div class="character-card" style="--accent: #ff6f0f;" data-character-id="oval">
+        <img src="images/oval.png" alt="Oval" class="character-image" />
         <div class="character-info">
           <div class="character-name">Oval</div>
           <div class="character-tag">Somber</div>
