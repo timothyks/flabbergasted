@@ -403,11 +403,17 @@
         triangle: [
           { src: "images/triangle.png", title: "" },
         ],
+        square: [
+          { src: "images/square.png", title: "" },
+        ],
+        rectangle: [
+          { src: "images/rectangle.png", title: "" },
+        ],
         oval: [
           { src: "images/oval.png", title: "" },
         ],
         octagon: [
-          { src: "images/octagon-armless.png", title: "Before Episode 5" },
+          { src: "images/octagon-armless.png", title: "Episode 1-4" },
           { src: "images/octagon-armful.png", title: "Episode 5+" },
         ],
         // more characters here
@@ -490,13 +496,90 @@
             </div>
           </div>
         `,
+        square: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("square")}
+              <div class="profile-info">
+                <h2 class="char-name">Square</h2>
+                <p class="char-quote">"I'm glad I found you."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 10</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Square has never been the exploring type. Due to her sister's infectious enthusiasm, she is psychologically forced into her activities. However, she has found some enjoyment in what Rectangle likes to do and always likes to pitch-in and provide information from the countless books she has read.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Square is very softspoken, often overshadowed by her older sister.</li>
+                <li>Square knows a lot about the Shapelands and likes to talk about the things she learns through reading.</li>
+                <li>When Square is tasked with a mission that she knows a lot about, she partakes it with gusto.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Square is a late bloomer, as she has not grown arms yet, despite being ten years old.</li>
+                <li>Square often gets annoyed at Rectangle for dragging her along, but she doesn't have the courage to speak up about it.</li>
+                <li>Square was supposed to be a very sad individual and there used to be lore where Evil Square was created due to the sadness that Square held. However, this is no longer canon.</li>
+                <li>Evil Square said what Square wanted to say for a while in "Shapeoff 6: Split by Stone".</li>
+                <li>Square tends to stay indoors and read books rather than play outside.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        rectangle: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("rectangle")}
+              <div class="profile-info">
+                <h2 class="char-name">Rectangle</h2>
+                <p class="char-quote">"I said… COME ON SQUARE, JUST GO!!!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 12</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Eager to uncover the deepest darkest secrets of the world with her beloved sister, Rectangle always leaves a trail of happiness and excitement wherever she goes!... But, she is starting to boast a darker side, as a spark of imagination she had in "Shapeoff 4: Mind the Gap" led her to scheming a blueprint for an underground facility built to torture Shapelanders alike. Hopefully that never comes to fruition.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Rectangle loves discovering new things.</li>
+                <li>Rectangle cannot stop thinking about Square, from the moment she was born.</li>
+                <li>Rectangle thinks about the world positively, but is rather oblivious to dangerous and dark matters.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Rectangle doesn't know why one can be shy or embarrassed. She thinks that hiding expression is masking your true self.</li>
+                <li>Rectangle can be very reliant on her sister at times for information or for company.</li>
+                <li>Rectangle had an epiphany in "Shapeoff 4: Mind the Gap" while Hexagon and Triangle were dueling. She found the sheer violence of the fight to be entertaining and now hopes to recreate that in the future.</li>
+                <li>Rectangle enrolled her sister into Circle's school for her.</li>
+                <li>In the original series' Episode 7, Rectangle is shown without arms in a flashback. This was before she turned 10 and grew them.</li>
+                <li>Rectangle often forgets where she is because she gets too mesmerized in what she's doing.</li>
+              </ul>
+            </div>
+          </div>
+        `,
         oval: `
           <div class="character-profile">
             <div class="profile-header">
               ${generateArtHTML("oval")}
               <div class="profile-info">
                 <h2 class="char-name">Oval</h2>
-                <p class="char-quote">"I’m just saying that maybe I could finally make a new friend."</p>
+                <p class="char-quote">"I'm just saying that maybe I could finally make a new friend."</p>
                 <div class="char-meta">
                   <span class="gender-symbol">♂️</span>
                   <span class="species">Species: Shapelander</span>
@@ -528,6 +611,7 @@
             </div>
           </div>
         `,
+        
         octagon: `
           <div class="character-profile">
             <div class="profile-header">
@@ -648,16 +732,16 @@
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #0b0ea8;">
-        <img src="images/shapeoff-logo.png" alt="Square" class="character-image" />
+      <div class="character-card" style="--accent: #0b0ea8;" data-character-id="square">
+        <img src="images/square.png" alt="Square" class="character-image" />
         <div class="character-info">
           <div class="character-name">Square</div>
           <div class="character-tag">Whisper</div>
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #18e622;">
-        <img src="images/shapeoff-logo.png" alt="Rectangle" class="character-image" />
+      <div class="character-card" style="--accent: #18e622;" data-character-id="rectangle">
+        <img src="images/rectangle.png" alt="Rectangle" class="character-image" />
         <div class="character-info">
           <div class="character-name">Rectangle</div>
           <div class="character-tag">Peppy</div>
