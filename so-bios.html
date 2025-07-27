@@ -425,12 +425,18 @@
           { src: "images/nonagon.png", title: "" },
         ],
         octagon: [
-          { src: "images/octagon-armless.png", title: "Episode 1-4" },
           { src: "images/octagon-armful.png", title: "Episode 5+" },
+          { src: "images/octagon-armless.png", title: "Episode 1-4" },
         ],
         hexagon: [
           { src: "images/hexagon.png", title: "Default" },
           { src: "images/hexagon-locked-in.png", title: "Episode 5" },
+        ],
+        tablesoldier: [
+          { src: "images/table-soldier.png", title: "" },
+        ],
+        decagon: [
+          { src: "images/decagon.png", title: "" },
         ],
         // more characters here
       };
@@ -896,6 +902,82 @@
             </div>
           </div>
         `,
+        tablesoldier: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("tablesoldier")}
+              <div class="profile-info">
+                <h2 class="char-name">Table Soldier</h2>
+                <p class="char-quote">"I will be forever grateful. Farewell!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">🜬</span>
+                  <span class="species">Species: Shapelander...?</span>
+                  <span class="age">Age: Varies</span>
+                  <span class="age">Status: Varies</span>
+                </div>
+                <p class="char-description">
+                  Table Soldiers are trained militia sent by the Federal Republic of the Shapelands to keep order and enforce the law throughout!
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Table Soldiers follow every command their commander gives, no matter what.</li>
+                <li>Table Soldiers get lost when they are placed somewhere they are not assigned to.</li>
+                <li>Table Soldiers are direct and faithful. They do not question and do not object unless asking for clarification.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Table Soldiers are able to share the same thoughts with one another. This has caused speculation that they are not natural Shapelanders...</li>
+                <li>Table Soldiers are always equipped with a top hat and a table. This makes them highly distinguishable to other circular shapes.</li>
+                <li>Not much is known about the Table Soldiers as they do not share any information and most information is deducted from official government books.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+        decagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("decagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Decagon</h2>
+                <p class="char-quote">"Well maybe you'll find out if you, oh I don't know, read it?"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 53</span>
+                  <span class="age">Status: Deceased</span>
+                </div>
+                <p class="char-description">
+                  Decagon used to be a rather chaotic shape, causing small turmoil between older shapes. But, as he was setting up a prank in the forest, he tripped and fell onto a strange golden lamp. Before he could get up, a giant boulder crushed him against all odds, destroying his body and somehow infusing his soul within the golden lamp. He then soon figured out that he could grant wishes to people, so he waited until Octagon found him in "Shapeoff 2: Artistic Ambitions".
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Decagon is a prankster by heart and likes to play when it's not necessary.</li>
+                <li>Decagon likes to make crude and hurtful jokes.</li>
+                <li>Decagon still feels like a kid despite being trapped in a lamp for over forty years.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Decagon lived near the Shapelands' capital.</li>
+                <li>The origins of the genie lamp are unknown.</li>
+                <li>Decagon was alive and sentient for over forty years before Octagon found him.</li>
+                <li>Like many ghosts in television media, no mortal is unable to make physical contact with Decagon.</li>
+                <li>It is unknown to anyone, including Decagon, how many wishes Decagon is able to grant. Furthermore, Decagon does not know what will happen when he has finished granting all his wishes.</li>
+                <li>Decagon usually kept to himself when he was not messing with his friends.</li>
+                <li>Decagon was twelve years old when he passed.</li>
+              </ul>
+            </div>
+          </div>
+        `,
 
         // more characters here...
       };
@@ -1073,8 +1155,8 @@
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #c1ff70;">
-        <img src="images/shapeoff-logo.png" alt="Decagon" class="character-image" />
+      <div class="character-card" style="--accent: #c1ff70;" data-character-id="decagon">
+        <img src="images/decagon.png" alt="Decagon" class="character-image" />
         <div class="character-info">
           <div class="character-name">Decagon</div>
           <div class="character-tag">Genie</div>
@@ -1097,8 +1179,8 @@
         </div>
       </div>
 
-      <div class="character-card unavailable" style="--accent: #949494;">
-        <img src="images/shapeoff-logo.png" alt="Table Soldier" class="character-image" />
+      <div class="character-card" style="--accent: #949494;" data-character-id="tablesoldier">
+        <img src="images/table-soldier.png" alt="Table Soldier" class="character-image" />
         <div class="character-info">
           <div class="character-name">Table Soldier</div>
           <div class="character-tag">Guard</div>
