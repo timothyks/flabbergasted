@@ -200,6 +200,63 @@ body {
     line-height: 1.6;
     margin-bottom: 16px;
   }
+
+  .announcement-box {
+  display: flex;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #36141d, #3f1912); /* vibrant gradient */
+  border-left: 8px solid #ca3838;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 1000px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  color: white;
+  gap: 20px;
+}
+
+.announcement-text {
+  flex: 1 1 350px;
+  min-width: 300px;
+}
+
+.announcement-box h2 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.announcement-box .subheading {
+  font-size: 1.2em;
+  color: #ffe6e6;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.announcement-box p {
+  font-size: 1.1em;
+  color: #fff5f5;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.announcement-image {
+  flex: 1 1 300px;
+  min-width: 250px;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.announcement-image img {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+}
   
 
 /* ───── Reusable Feature Section ───── */
