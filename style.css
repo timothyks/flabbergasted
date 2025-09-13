@@ -14,6 +14,10 @@ body {
     padding: 0;
   }
 
+html {
+  margin: 0;
+  padding: 0;
+}
 /* ───── Navbar ───── */
 .navbar {
   display: flex;
@@ -200,11 +204,113 @@ body {
     line-height: 1.6;
     margin-bottom: 16px;
   }
+/* ------------------- CONTENT BOX ------------------- */
+.content-box {
+  background-color: #1a1a1a;
+  border-left: 5px solid #4caf50;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 1000px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* spacing between elements */
+}
+
+.content-box h2 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.content-box .subheading {
+  font-size: 1.2em;
+  color: #bbbbbb;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.content-box p {
+  font-size: 1.1em;
+  color: #dddddd;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* ------------------- FIGURE & CAPTION ------------------- */
+.content-box figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.content-box figure img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+}
+
+.content-box figure figcaption {
+  margin-top: 8px;
+  font-size: 0.95em;
+  color: #bbbbbb;
+  line-height: 1.4;
+}
+
+/* ------------------- ROW OF SIDE-BY-SIDE IMAGES ------------------- */
+.content-box .row {
+  display: flex;
+  flex-wrap: wrap;      /* allow wrapping on smaller screens */
+  gap: 20px;
+  justify-content: center;
+}
+
+.content-box .row figure {
+  flex: 1 1 300px;
+}
+
+/* ------------------- RESPONSIVE ------------------- */
+@media (max-width: 768px) {
+  .content-box {
+    padding: 25px;
+    margin: 30px 15px;
+  }
+  .content-box h2 {
+    font-size: 1.8em;
+  }
+  .content-box p {
+    font-size: 1em;
+  }
+  .content-box .row figure {
+    flex: 1 1 100%;      /* stack images vertically */
+  }
+}
+
+@media (max-width: 480px) {
+  .content-box {
+    padding: 20px;
+    margin: 20px 10px;
+  }
+  .content-box h2 {
+    font-size: 1.5em;
+  }
+  .content-box p {
+    font-size: 0.95em;
+  }
+  .content-box figure figcaption {
+    font-size: 0.9em;
+  }
+}
+
 
   .announcement-box {
   display: flex;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, #36141d, #3f1912); /* vibrant gradient */
+  background: linear-gradient(135deg, #36141d, #3f1912);
   border-left: 8px solid #ca3838;
   padding: 30px;
   margin: 40px auto;
@@ -259,7 +365,7 @@ body {
 }
   
 
-/* ───── Reusable Feature Section ───── */
+/* ───── Feature Section ───── */
 .feature-section {
   padding: 40px 20px;
   max-width: 1000px;
@@ -323,10 +429,224 @@ body {
 .feature-button.distancezero { background-color: #610000; }
 .feature-button.farmrice   { background-color: #45cccc; }
 .feature-button.dcm        { background-color: #2cb11f; }
+.feature-button.roblox        { background-color: #000000; }  
 
 .feature-button:hover {
   filter: brightness(1.1);
 }
+
+.video-container {
+  position: relative;
+  padding-bottom: 22.5%; /* 16:9 ratio...? */
+  height: 0;
+  overflow: hidden;
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;   
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 100%;
+}
+
+
+/* ------------------- BASE STYLES ------------------- */
+
+/* Full-width container */
+.carousel-container {
+  position: relative;
+  width: 100vw;  
+  margin-left: calc(-50vw + 50%);
+}
+
+.carousel-viewport {
+  width: 100%;
+  height: 40vh;      /* desktop height? */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Each carousel card fills viewport */
+.carousel-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.85);
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.carousel-card.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Dark overlay with blur */
+.carousel-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 0;
+}
+
+/* Horizontal edge fade */
+.carousel-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.8) 0%,
+    rgba(0,0,0,0) 15%,
+    rgba(0,0,0,0) 85%,
+    rgba(0,0,0,0.8) 100%
+  );
+  border-radius: 16px;
+}
+
+/* Keep content above overlays */
+.carousel-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.carousel-arrow {
+  background: rgba(255, 255, 255, 0.2); 
+  color: #fff;                          /* arrow color */
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  z-index: 3;
+  border: none;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%) scale(1.15);
+  color: #ffcc00;
+}
+
+.carousel-arrow.left { left: 15px; }
+.carousel-arrow.right { right: 15px; }
+
+.carousel-arrow:active {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* ------------------- TEXT STYLING ------------------- */
+.carousel-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.carousel-description {
+  font-size: 1.1rem;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.carousel-card > img {
+  max-width: 220px;
+  margin-bottom: 1rem;
+}
+
+/* ------------------- RESPONSIVE STYLES ------------------- */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .carousel-viewport {
+    height: 70vh;
+  }
+
+  .carousel-card {
+    padding: 15px;
+    background-size: contain;
+    background-position: center center;
+  }
+
+  .carousel-title {
+    font-size: 1.5rem;
+  }
+
+  .carousel-description {
+    font-size: 1rem;
+  }
+
+  .carousel-card > img {
+    max-width: 160px;
+  }
+
+  .carousel-arrow {
+    font-size: 2.5rem;
+    padding: 15px;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .carousel-viewport {
+    height: 80vh;
+  }
+
+  .carousel-card {
+    padding: 10px;
+    background-size: contain;
+    background-position: center center;
+  }
+
+  .carousel-title {
+    font-size: 1.3rem;
+  }
+
+  .carousel-description {
+    font-size: 0.95rem;
+  }
+
+  .carousel-card > img {
+    max-width: 130px;
+  }
+
+  .carousel-arrow {
+    font-size: 2rem;
+    padding: 10px;
+  }
+}
+
+
+
 
 /* ───── Feature Section - Mobile ───── */
 @media (max-width: 600px) {

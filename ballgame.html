@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/icon.jpg" type="image/jpg">
+  <title>ball game: faraway facilities</title>
+  <style>
+    /* ------------------- HEADER ------------------- */
+    .game-header {
+      position: relative;
+      width: 100%;
+      height: 60vh;           
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .game-header-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: brightness(0.5) blur(4px); 
+      z-index: 0;
+    }
+
+    .game-header-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.8) 0%,
+        rgba(0,0,0,0) 15%,
+        rgba(0,0,0,0) 85%,
+        rgba(0,0,0,0.8) 100%
+      );
+      z-index: 1;
+    }
+
+    .game-header-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .game-logo {
+      max-width: 200px;
+      margin-bottom: 1rem;
+    }
+
+    .game-title {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .game-description {
+      max-width: 700px;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .game-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #000000;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .game-button:hover {
+      background: #000b2e;
+      transform: scale(1.05);
+    }
+
+    /* ------------------- RESPONSIVE ------------------- */
+    @media (max-width: 768px) {
+      .game-header {
+        height: 70vh;
+      }
+      .game-logo {
+        max-width: 150px;
+      }
+      .game-title {
+        font-size: 1.5rem;
+      }
+      .game-description {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .game-header {
+        height: 80vh;
+      }
+      .game-logo {
+        max-width: 120px;
+      }
+      .game-title {
+        font-size: 1.3rem;
+      }
+      .game-description {
+        font-size: 0.9rem;
+      }
+      .game-button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Divider */
+    .custom-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px auto;
+      width: 100%;
+      max-width: 600px;
+      gap: 10px;
+    }
+
+    .custom-divider .line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, #555, #999, #555);
+      border-radius: 1px;
+    }
+
+    .custom-divider .divider-icon {
+      font-size: 1.5em;
+      color: #ccc;
+      padding: 0 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+
+        // Highlight active link
+        const links = document.querySelectorAll('.nav-links a');
+        const currentPage = window.location.pathname.split('/').pop();
+
+        links.forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+  </script>
+
+    <header class="game-header">
+    <div class="game-header-bg" style="background-image: url('images/bg-ballgame.png');"></div>
+
+    <div class="game-header-content">
+        <img src="images/ballgame-logo-2.png" alt="Ball Game Logo" class="game-logo">
+        <h1 class="game-title">ball game: faraway facilities (2024-)</h1>
+        <p class="game-description">
+        The newest and best game I have created so far with the most robust features and gameplay. It's all about balls and lore.
+        </p>
+        <a href="https://www.roblox.com/games/18594754228/" class="game-button" target="_blank">Play on Roblox (www.roblox.com)</a>
+    </div>
+    </header>
+
+    <div class="custom-divider">
+      <span class="line"></span>
+      <span class="divider-icon">🛠️ This page is a work in progress! 🛠️</span>
+      <span class="line"></span>
+    </div>
+
+    <section class="content-box">
+  <h2>🔮 An Introduction</h2>
+  <p>
+    ball game: faraway facilities is an incremental simulator game I started developing in the summer of 2024 (transitioning into high school), centered around collecting and selling balls to earn money.
+  </p>
+  <p>
+    The game offers a nice, relaxing but engaging experience of unlocking new trophies, completing quests, and exploring various zones to discover new NPCs and balls.
+  </p>
+  <p>
+    There is a lot of content in the game with hours of gameplay, but only five zones are currently available. As a solo developer, I balance life between school, personal time, and game development, as well as get a lot of help and support from my friends. Despite these challenges, I have poured my heart and soul into making a genuinely enjoyable game for any to play, for absolutely free.
+  </p>
+
+  <p class="subheading">Fun fact: the "faraway facilities" part in the game's title comes from the game's latest major update, which is titled Faraway Facilities!</p>
+</section>
+
+<div class="video-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/kl31UfCGFrE?si=6qChs14iVMCJ1TjS" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe>
+</div>
+
+    <section class="content-box">
+  <h2>✨ The Origins and Concept</h2>
+  <p>
+    The concept of 'ball game' originated from one of my friends' games on Blockate, a platform within Roblox where players could build and share worlds they created. 
+    Intrigued with the idea, I decided to develop my own version, infusing it with unique features and a deeper storyline while still keeping true to the original concept.
+  </p>
+
+  <p class="subheading">Fun fact: The game on Blockate is actually called Orb Inc 2!</p>
+
+  <!-- Row of images with captions -->
+  <div class="row">
+    <figure>
+      <img src="images/orb-inc-2-zone-1-ss.png" alt="Screenshot of Orb Inc 2">
+      <figcaption>
+        A screenshot of Orb Inc 2's first zone, which bears a striking resemblance to the Zone 1 of the Facility in Ball Game.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/ballgame-zone-1-ss.png" alt="Screenshot of ball game">
+      <figcaption>
+        I kept the design of the Facility's Zone 1 similar as a tribute to the original game, enhancing the zone with a fresh coat of paint with things not possible in Blockate due to its limitations.
+      </figcaption>
+    </figure>
+  </div>
+  <p>
+    After having ported a beta version of the game to Roblox, codenamed "dopamine", I decided to rebrand the game to "ball game" to make the game feel more casual and approachable, while also reflecting the core gameplay of collecting and selling balls. 
+  </p>
+  <p>
+    The game was intended to be a simple simulator at first, with a linear gameplay loop of selling balls and becoming richer. However, as development progressed, 
+    I realized that I could add more depth and complexity to the game. 
+    I was intending for the players to traverse through zones fairly quickly, but that meant the zones would have less meaning and impact.
+  </p>
+  <p>
+    Thus, Zone 4 took drastically longer to develop than Zones 1-3 combined, with more thought put into its design and lore. Other than the usual new balls, the zone added new mechanics, NPCs, and a unique storyline between the two main NPCs of the zone. Things that were not present in the previous zones.
+  </p>
+  <p>
+    This philosophy of making each zone unique and memorable has continued into the development of Shibaria, which was the most challenging zone to develop and was the largest update to date.
+  </p>
+  <div class="row">
+    <figure>
+      <img src="images/ballgame-facility-map.png" alt="Bird's eye view of the Facility in ball game">
+      <figcaption>
+        As you can see, Zone 4 is larger than the previous zones, with a whole area dedicated to provide a buffer between Zone 4 and the next zone.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/ballgame-shibaria-map.png" alt="Bird's eye view of Shibaria Region 1 Part 1-2 in ball game">
+      <figcaption>
+        Shibaria Region 1 Part 1-2 is the largest zone in the game so far, being about twice as large as the Facility. It took months of planning and building to make the zone feel immersive and different from the previous zones.
+      </figcaption>
+    </figure>
+  </div>
+  <p>
+    All in all, ball game is a culmination of my experiences as a game developer and my desire to create a genuinely engaging, free experience for players. Its development was fueled by my compassion to other players struggling to find a game on Roblox that isn't a cash-grab, endless feedback and suggestions from friends and players alike, and meaningful collaboration with my friends to bring the game to life.
+  </p>
+</section>
+
+
+
+</body>
+</html>
