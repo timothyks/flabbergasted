@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="images/icon.jpg" type="image/jpg">
 </head>
+<script src="script.js"></script>
 <body>
 
   <!-- NAVBAR -->
@@ -63,7 +64,64 @@
     </div>
   </section>
 
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">My News</h2>
 
+    <div class="carousel" id="myCarousel">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/ep5-thumb.jpg')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>Shapeoff 7: Intertwined Act I has undergone its live screening!</h1>
+                  <p>Shapeoff 7: Intertwined is the newest entry in the Shapeoff series, and it's a big one. I'm still in the process of polishing the last two acts, but the first act is developed enough to have a live screening. Expect more updates soon!</p>
+                  <a class="button shapeoff" href="shapeoff.html">Learn More about Shapeoff</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/lickerslegacysnapshot.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>ball game: licker's legacy is almost here!</h1>
+                  <p>The long-awaited Part 2 of ball game's annual Ballidays event is almost done! Sorry for all the delays; I promise it'll be worth it once you see the main event of the update in action!</p>
+                  <a class="button ballgame" href="ballgame.html">Learn More about ball game</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/siteredesignsnapshot.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>This website is undergoing a redesign!</h1>
+                  <p>If you've viewed this website in its original form, you'll notice a lot of changes. The new design is a bit cleaner and responsive, with an emphasis of a universal aesthetic throughout all pages of the site!</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- add more here -->
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" aria-label="Next">›</button>
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="myCarouselDots"></div>
+  </div>
+</section>
 
   <!-- FEATURE SECTION -->
   <section class="section">

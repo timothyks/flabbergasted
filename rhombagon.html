@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="images/rhombagon.png" type="image/jpg">
 </head>
+<script src="script.js"></script>
 <body>
 
   <!-- NAVBAR -->
@@ -77,26 +78,52 @@
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="section-title">Collided Concepts</h2>
+  <div class="container">
+    <h2 class="section-title">Collided Concepts</h2>
 
-      <div class="card-grid">
-        <div class="card">
-          <img src="images/ep7-1-thumbnail.png" alt="Shapeoff Episode 7 Act 1 thumbnail" class="card-thumb">
-          <h2>Shapeoff</h2>
-          <p>The show that gave me my name and profile picture. I currently voice Octagon, Rhombus, Trapezoid, Nonagon, and a few other minor characters during live screenings.</p>
-          <a href="shapeoff.html" class="button shapeoff">Learn More</a>
-        </div>
+    <div class="carousel" id="myCarousel">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/ep7-1-thumbnail.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>Shapeoff</h1>
+                  <p>The show that gave me my name and profile picture. I currently voice Octagon, Rhombus, 
+                    Trapezoid, Nonagon, and a few other minor characters during live screenings.</p>
+                  <a class="button shapeoff" href="shapeoff.html">Learn More</a>
+                </div>
+              </div>
+            </article>
+          </div>
 
-        <div class="card">
-          <img src="images/bg-bfms.png" alt="Thumbnail art for Battle For Mom Simulator" class="card-thumb">
-          <h2>Battle For Mom Simulator</h2>
-          <p>An alternate joke show where Host is even stupider than before. Also Ketamine.</p>
-          <a href="bfms.html" class="button bfms">Learn More</a>
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/bg-bfms.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>Battle For Mom Simulator</h1>
+                  <p>An alternate joke show where Host is even stupider than before. Also Ketamine.</p>
+                  <a class="button bfms" href="bfms.html">Learn More</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- add more .carousel-slide blocks as needed -->
         </div>
       </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" aria-label="Next">›</button>
+      </div>
     </div>
-  </section>
+
+    <div class="carousel-dots" id="myCarouselDots"></div>
+  </div>
+</section>
 
 </body>
 </html>
