@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shapeoff Character Bios - TimKS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/icon.jpg" type="image/jpg" />
+  <!-- Page styles for Character Bios have been moved to style.css (search: "CHARACTER PAGE & POPUPS") -->
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo">
+        <img src="images/icon.jpg" alt="Logo">
+        <span>The Site of Timothy K. S.</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="stories.html">Stories</a>
+        <a href="games.html">Games</a>
+        <a href="other.html">Other</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="intro-box with-logo-bg">
+    <div class="logo-bg" aria-hidden="true"></div>
+    <h2>Shapeoff Character Bios</h2>
+    <p>Click any card to read the full profile. Spoiler warning; this page includes details revealed throughout the entire series.</p>
+  </section>
+
+  <section class="character-section" id="contestants">
+    <h2>Contestants</h2>
+    <div class="character-grid" id="character-grid">
+      <!-- Cards inserted by JS -->
+    </div>
+  </section>
+
+  <section class="character-section">
+    <h2>Non-Contestants</h2>
+    <div class="character-grid" id="noncontestant-grid"></div>
+  </section>
+
+  <section class="character-section">
+    <h2>The Shapelands Confederacy</h2>
+    <div class="character-grid" id="confederacy-grid"></div>
+  </section>
+
+  <section class="character-section">
+    <h2>Minor Characters</h2>
+    <div class="character-grid" id="minorcharacter-grid"></div>
+  </section>
+
+  <!-- Fullscreen Character Popup -->
+  <div id="character-popup" class="popup-overlay" role="dialog" aria-hidden="true" aria-modal="true">
+    <div class="popup-content" role="document">
+      <button class="popup-close" aria-label="Close (Esc)">&times;</button>
+      <div id="popup-inner"></div>
+    </div>
+  </div>
+
+  <script>
+    // Character assets
+    const characterArtImages = {
+      placeholder: [{src: 'images/shapeoff-logo.png', title: ''}],
+      circle: [{src: 'images/circle.png', title: ''}],
+      triangle: [{src: 'images/triangle.png', title: ''}],
+      square: [{src: 'images/square.png', title: ''}],
+      rectangle: [{src: 'images/rectangle.png', title: ''}],
+      hexagon: [{src: 'images/hexagon.png', title: 'Normal'}, {src: 'images/hexagon-locked-in.png', title: 'Episode 5'}],
+      octagon: [{src: 'images/octagon-armful.png', title: 'Episode 5+'}, {src: 'images/octagon-armless.png', title: 'Episode 1-4'}],
+      oval: [{src: 'images/oval.png', title: ''}],
+      pentagon: [{src: 'images/pentagon.png', title: ''}],
+      trapezoid: [{src: 'images/trapezoid.png', title: ''}],
+      rhombus: [{src: 'images/rhombus.png', title: ''}],
+      nonagon: [{src: 'images/nonagon.png', title: ''}],
+      decagon: [{src: 'images/decagon.png', title: ''}],
+      tablesoldier: [{src: 'images/table-soldier.png', title: ''}]
+    };
+
+    // Helper used by legacy templates
+    function generateArtHTML(characterId){
+      const arts = characterArtImages[characterId] || [];
+      if (!arts.length) return '';
+      if (arts.length === 1) return `\n            <div class="profile-art-wrapper single" data-character-id="${characterId}">\n              <img src="${arts[0].src}" class="profile-art" alt="Official art" />\n              <div class="art-title">${arts[0].title}</div>\n            </div>`;
+      return `\n          <div class="profile-art-wrapper" data-character-id="${characterId}">\n            <button class="art-arrow left">&lt;</button>\n            <img src="${arts[0].src}" class="profile-art" alt="Official art" />\n            <button class="art-arrow right">&gt;</button>\n            <div class="art-counter">1 / ${arts.length}</div>\n            <div class="art-title">${arts[0].title}</div>\n          </div>`;
+    }
+
+    // Long-form HTML templates imported from backup (keeps your original profiles intact)
+    const longProfiles = {
+      circle: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("circle")}
+              <div class="profile-info">
+                <h2 class="char-name">Circle</h2>
+                <p class="char-quote">"Don't get your hopes too high, Trapezoid. You're fast, but you're not an adult, or a qualified teacher!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span> <!-- options: ♀ ♂ ⚧ -->
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 25</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Circle is really confident, always calling himself an "adult" or a "qualified teacher". Despite his constant gloating, he proves to surprisingly be a really good educator. However, he has constant nightmares about killing his own students, which only stopped after the school was demolished by Hexagon in "Shapeoff 1: A Rocky Start".
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Circle likes to call himself an adult or a qualified teacher.</li>
+                <li>Circle tends to take initiative in times of distress, like in "Shapeoff 5: BREAK-IT BRAWL".</li>
+                <li>Although appearing rather apathetic towards many things, Circle genuinely cares about his students and others around him.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Circle is one of the first characters to ever come to life, with concepts dating back to 2017 in a green notebook.</li>
+                <li>It used to be canon that Circle had some ties to Evil Circle, but now they're individual people lacking any sort of connection.</li>
+                <li>Circle is one of the only educators in the entirety of the Shapelands.</li>
+                <li>Circle has the worst track record of any of the contestants, having been eliminated first in both the original YouTube series and in the scripts.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      triangle: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("triangle")}
+              <div class="profile-info">
+                <h2 class="char-name">Triangle</h2>
+                <p class="char-quote">"NONAGON, IT'S NOW OR NEVER!!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 16</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Triangle is an average, rather encouraging teenage girl. She used to work at McCircles, a chain fast food restaurant, with her friend, Nonagon. It was an escape from the boring life she has at school. She has always been quite the competitive type because of her sharp mind, and gets ticked off pretty easily. Her personality is also quite… explosive, explaining her mutual respect with Hexagon.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Triangle is usually more compassionate than most of the contestants.</li>
+                <li>Triangle is one of the most intelligent characters and has a lot of common sense.</li>
+                <li>Triangle doesn't want to be forgotten again.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Triangle's canonical color and gender have changed over the years. First she was male and magenta, then she became female and orange, and then finally to female and magenta.</li>
+                <li>There used to be lore where the most intelligent characters had evil counterparts, which is how Evil Triangle was born, but that's not canon anymore. They are two completely different people.</li>
+                <li>Triangle has stayed at the Shapeland's leading orphanage, Overhaul Orphanage.</li>
+                <li>Triangle did not read the fine print while applying for a job at McCircle's.</li>
+                <li>Triangle and Nonagon have a long-lasting friendship dating back to when they were still in school.</li>
+                <li>Triangle was oblivious to how Nonagon disappeared for a long time. It took a long time for her to recover mentally as there was no closure to what happened.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      square: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("square")}
+              <div class="profile-info">
+                <h2 class="char-name">Square</h2>
+                <p class="char-quote">"I'm glad I found you."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 10</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Square has never been the exploring type. Due to her sister's infectious enthusiasm, she is psychologically forced into her activities. However, she has found some enjoyment in what Rectangle likes to do and always likes to pitch-in and provide information from the countless books she has read.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Square is very softspoken, often overshadowed by her older sister.</li>
+                <li>Square knows a lot about the Shapelands and likes to talk about the things she learns through reading.</li>
+                <li>When Square is tasked with a mission that she knows a lot about, she partakes it with gusto.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Square is a late bloomer, as she has not grown arms yet, despite being ten years old.</li>
+                <li>Square often gets annoyed at Rectangle for dragging her along, but she doesn't have the courage to speak up about it.</li>
+                <li>Square was supposed to be a very sad individual and there used to be lore where Evil Square was created due to the sadness that Square held. However, this is no longer canon.</li>
+                <li>Evil Square said what Square wanted to say for a while in "Shapeoff 6: Split by Stone".</li>
+                <li>Square tends to stay indoors and read books rather than play outside.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      rectangle: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("rectangle")}
+              <div class="profile-info">
+                <h2 class="char-name">Rectangle</h2>
+                <p class="char-quote">"I said… COME ON SQUARE, JUST GO!!!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 12</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Eager to uncover the deepest darkest secrets of the world with her beloved sister, Rectangle always leaves a trail of happiness and excitement wherever she goes!... But, she is starting to boast a darker side, as a spark of imagination she had in "Shapeoff 4: Mind the Gap" led her to scheming a blueprint for an underground facility built to torture Shapelanders alike. Hopefully that never comes to fruition.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Rectangle loves discovering new things.</li>
+                <li>Rectangle cannot stop thinking about Square, from the moment she was born.</li>
+                <li>Rectangle thinks about the world positively, but is rather oblivious to dangerous and dark matters.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Rectangle doesn't know why one can be shy or embarrassed. She thinks that hiding expression is masking your true self.</li>
+                <li>Rectangle can be very reliant on her sister at times for information or for company.</li>
+                <li>Rectangle had an epiphany in "Shapeoff 4: Mind the Gap" while Hexagon and Triangle were dueling. She found the sheer violence of the fight to be entertaining and now hopes to recreate that in the future.</li>
+                <li>Rectangle enrolled her sister into Circle's school for her.</li>
+                <li>In the original series' Episode 7, Rectangle is shown without arms in a flashback. This was before she turned 10 and grew them.</li>
+                <li>Rectangle often forgets where she is because she gets too mesmerized in what she's doing.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      trapezoid: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("trapezoid")}
+              <div class="profile-info">
+                <h2 class="char-name">Trapezoid</h2>
+                <p class="char-quote">"… I know you all don't understand me…"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 9</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  A mysterious shape with many secrets. Trapezoid tends to wander off doing his own thing, preferring to work by himself rather than with others. Although he is completely mute and has a constant poker face, he expresses his emotions and messages through blinking, a type of communication that every shape can understand. Trapezoid can be seen building epic inventions or restoring technologies thought to be long gone. A lot goes on in his head, but, can he actually speak, or does he choose not to?
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Trapezoid thinks a lot but cannot put it into verbal speech.</li>
+                <li>Trapezoid carefully observes almost everything around him and plans ahead a lot.</li>
+                <li>Trapezoid prefers to do things alone but makes many exceptions.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Trapezoid is canonically on the autism spectrum. This condition contributes to his inability to speak.</li>
+                <li>Trapezoid's inability to speak is caused by mental factors, not physical disabilities.</li>
+                <li>There was once an upside-down version of Trapezoid back in 2018. That's no longer a thing.</li>
+                <li>Trapezoid might speak at least one in the duration of the series, as he is constantly put in situations where verbal communication is optimal.</li>
+                <li>Trapezoid's portal was a culmination of his research about the Shapeland's history, his natural talent in engineering, and the incentive that the group may be in danger soon.</li>
+                <li>Trapezoid's version of harnessing interdimensional travel is nearly identical to the government's way back in the day.</li>
+                <li>The only time Trapezoid puts on any facial expression is when he is dreaming.</li>
+                <li>Trapezoid had taken trips to the local library in the past for research purposes, which is why he excelled in "Shapeoff 4: Mind the Gap".</li>
+                <li>Trapezoid never thought he would interact with Pentagon with such frequency.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      octagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("octagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Octagon</h2>
+                <p class="char-quote">"I'm only here because you paid me to be here."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 10</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Octagon's usually chill… unless you get on his nerves; and that can happen really easily. He's always feeling unsure of the current social situation he is put in, and you can tell who he likes and dislikes really easily. You could say it's the best of both worlds. The only shape he has a strongly positive relationship with is Hexagon, as they share a sibling-like bond with each other.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Octagon has trust issues, as he always questions things before acting.</li>
+                <li>Octagon used to have anger issues when he was younger, but has since become more calm.</li>
+                <li>Under times of need, Octagon usually chooses to put others before him, even though it may be marginal.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Octagon is mildly agitated at the world around him almost all the time for really no reason.</li>
+                <li>Octagon was never supposed to grow arms in the duration of the series, but he did in Shapeoff 5 to show a time skip of a couple of weeks.</li>
+                <li>Octagon was way more hotheaded and annoying in the original YouTube series, but that has since dialed down.</li>
+                <li>Octagon chose to hold onto life in "Shapeoff 6: Split by Stone" because he didn't want to accept defeat that easily.</li>
+                <li>Octagon doesn't want to openly display Decagon as he fears that he may lose his wishes... and also a friend.</li>
+                <li>Octagon's least favorite person is Rhombus by far.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      oval: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("oval")}
+              <div class="profile-info">
+                <h2 class="char-name">Oval</h2>
+                <p class="char-quote">"I'm just saying that maybe I could finally make a new friend."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 18</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Oval's story begins with him being born into a poor family, which means he has worked harder than most shapes in the Shapelands. While he used to be quite the cheerful one as a kid, he's since grown a lot more monotone the more he realized how hard of a hand life dealt him, specifically centered around the death of his older brother in a freak accident. Oval's specialty in being a mechanic was inspired by his sibling, dying doing what he loved most. Oval cares a lot about Pentagon, as he sees him as the brother he longed to have once more. Oval's a hard-working person, and even though he's fallen multiple times, he's always gotten back up.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Oval shows traits of depression early on in in the show, but his bond with Pentagon deteriorates them.</li>
+                <li>Oval is quite a loner, not having many people to watch his back. He's grown used to it.</li>
+                <li>Oval can also be quite hard-headed at times.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Oval befriended Triangle back in his younger years, but their friendship started to drift apart as they got older.</li>
+                <li>Oval's hat, which says "YM" (abbreviated to "your mom") was gifted to him by his older brother shortly before his passing.</li>
+                <li>Back way before Shapeoff was even a thing, Oval didn't have arms.</li>
+                <li>In the original Shapeoff, Oval got 4th place overall, compared to his 9th place concurrently.</li>
+                <li>Oval canonically has a Texan accent.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      pentagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("pentagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Pentagon</h2>
+                <p class="char-quote">"It's okay, Trapezoid. I'm sure we will all find a way to get back home!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 8</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Pentagon is a cheerful, gifted, and just overall kind shape to be around. Although he has no parents and was raised in an orphanage, he never hesitates to cheer others on, help those in need (although he can't do much most of the time), and attempt to comfort others. A hobby Pentagon's developed recently is having a real knack for Shapelandish history. He also has a hidden talent in engineering, being able to make new and innovative things from the parts around him. He just hasn't figured it out yet.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Pentagon is well-versed in the field of engineering, having spent countless hours tinkering with gadgets in his free time.</li>
+                <li>Pentagon has childhood innocence, but at the same time displays intelligence way beyond the scope of a child.</li>
+                <li>Pentagon loves to help his fellow Shapelanders.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Pentagon is supposed to get a special episode detailing what exactly happened when he fell into the ravine in "Shapeoff 3: The Shape Search".</li>
+                <li>Pentagon grabbed the law book in "Shapeoff 4: Mind the Gap" only because he wanted to read it. He did not know that it was going to play a role in his encounter with Evil Circle.</li>
+                <li>Pentagon and Triangle were both living in Overhaul Orphanage at some point in time, but they did not interact with each other.</li>
+                <li>Pentagon feels pity for Trapezoid being mute, but that pity has since turned into an empathy after Trapezoid demonstrated that he is capable of constructing technology.</li>
+                <li>Pentagon wears reading glasses.</li>
+                <li>Pentagon does not remember having parents.</li>
+                <li>Pentagon loves to draw rainbows!</li>
+                <li>Pentagon knew what Hexagon did to him and Oval in "Shapeoff 2: Artistic Ambitions".</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      rhombus: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("rhombus")}
+              <div class="profile-info">
+                <h2 class="char-name">Rhombus</h2>
+                <p class="char-quote">"Then we have to get the water out. Let me put it in your hands."</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 17</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Rhombus has an enormous ego and tends to look down on other shapes that aren't like her. But, deep down inside, she's a great team member with amazing leadership skills that will (maybe) make her team secure victory every time. She is not a total brat, as she can see when she has done wrong herself.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Rhombus thinks that she's better than most of her classmates.</li>
+                <li>Rhombus complains even in the most dire of times.</li>
+                <li>The scope of what Rhombus cherishes is very small, usually containing things that would make her relax.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Rhombus was raised in a rich family in the city. She enrolled into the school and moved out on her own accord.</li>
+                <li>Rhombus forgets what she competed for in Shapeoff.</li>
+                <li>Rhombus' talent to lead stems from her somewhat narcissistic viewpoint of the world.</li>
+                <li>Growing up, Rhombus was surrounded by Shapelanders who looked down on others.</li>
+                <li>Rhombus tends to grow apathetic to a task that is drawn out or uninteresting.</li>
+                <li>Rhombus had almost no backstory in the original YouTube series; She was annoying because she was simply that way.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      nonagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("nonagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Nonagon</h2>
+                <p class="char-quote">"I just can't stop feeling gratitude of all the crazy things that's happened, you know?"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 16</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Nonagon's just your average teenage girl working at a fast food restaurant (McCircle's)... Well, not anymore. After she skipped a day, being overloaded on homework, she was sent into the pit where she was left to rot. Nonagon likes to stay home and be uninvolved in conflicts that are too stifling, but when she puts her head to something, she doesn't stop thinking about it.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Nonagon easily connects with people. Her strong suit is compassion.</li>
+                <li>Nonagon usually gives up when things are tough, but in certain conflicts, she stands her ground.</li>
+                <li>Nonagon is a very forgiving Shapelander, understanding viewpoints of even the most deranged.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Nonagon got sent to the pit only two weeks after she got the job.</li>
+                <li>Nonagon isn't affected by the pit as much as others would be as she lost hope very quickly and just slept most of the time.</li>
+                <li>Nonagon was never supposed to be a character because she would be too hard to draw. The original YouTube series did not use sprites, so all the shapes were drawn manually.</li>
+                <li>Nonagon is canonically bisexual.</li>
+                <li>Nonagon was always overpowered by her older siblings when she was young.</li>
+                <li>Nonagon is insensitive to blood or gore.</li>
+                <li>It's not explicitly stated in "Shapeoff 6: Split by Stone", but Nonagon was constantly thinking about seeing Hexagon again as she was traversing with Octagon through the Crimson Veil.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      decagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("decagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Decagon</h2>
+                <p class="char-quote">"Well maybe you'll find out if you, oh I don't know, read it?"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 53</span>
+                  <span class="age">Status: Deceased</span>
+                </div>
+                <p class="char-description">
+                  Decagon used to be a rather chaotic shape, causing small turmoil between older shapes. But, as he was setting up a prank in the forest, he tripped and fell onto a strange golden lamp. Before he could get up, a giant boulder crushed him against all odds, destroying his body and somehow infusing his soul within the golden lamp. He then soon figured out that he could grant wishes to people, so he waited until Octagon found him in "Shapeoff 2: Artistic Ambitions".
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Decagon is a prankster by heart and likes to play when it's not necessary.</li>
+                <li>Decagon likes to make crude and hurtful jokes.</li>
+                <li>Decagon still feels like a kid despite being trapped in a lamp for over forty years.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Decagon lived near the Shapelands' capital.</li>
+                <li>The origins of the genie lamp are unknown.</li>
+                <li>Decagon was alive and sentient for over forty years before Octagon found him.</li>
+                <li>Like many ghosts in television media, no mortal is unable to make physical contact with Decagon.</li>
+                <li>It is unknown to anyone, including Decagon, how many wishes Decagon is able to grant. Furthermore, Decagon does not know what will happen when he has finished granting all his wishes.</li>
+                <li>Decagon usually kept to himself when he was not messing with his friends.</li>
+                <li>Decagon was twelve years old when he passed.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      hexagon: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("hexagon")}
+              <div class="profile-info">
+                <h2 class="char-name">Hexagon</h2>
+                <p class="char-quote">"You took away my weapons, so I have to go get some more!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♀️</span>
+                  <span class="species">Species: Shapelander</span>
+                  <span class="age">Age: 16</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Hexagon's specialty is to spread terrorism and destruction around the Shapelands in an all-out bombing extravaganza! Mentored personally by her parents growing up, she never hesitates to use her family's grand theft mafia techniques to execute her most vile plans!
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Hexagon wants to get revenge on the world for taking away what made her who she was today.</li>
+                <li>Hexagon thinks of the world as a whole rather than of individual beings.</li>
+                <li>Hexagon loves arson.</li>
+              </ul>
+
+              <h3>📜 Backstory</h3>
+              <ul>
+                <li>Hexagon was born into a mafia family as an only child. She was expected to be the next heir in her parents' operations. As a result, she was trained to fight, defend, and strategize using various tools and weapons in her upbringing, the same tools that her parents use to conduct secret missions around the Shapelands.</li>
+                <li>One fateful day, Hexagon's parents figured that she was ready to go on one of their missions to a sketchy and dangerous part of the Shapelands. The family trudged on with caution, but that was not enough, and they were swarmed with old rivals, out for their blood.</li>
+                <li>Hexagon returned home, carrying the burden that was the absence of her parents. She hid in a bush to conceal herself, but at the cost of her family. Ever since, she's been wanting to get revenge on the world for taking her parents away by using what they had taught her.</li>
+              </ul>
+
+              <h3>👁️ A Change in Viewpoint</h3>
+              <ul>
+                <li>In "Shapeoff 5: BREAK-IT BRAWL", after Hexagon had geared up and decimated the competition, Nonagon helped her realize that she had become what she saught to destroy, and that she was using her knowledge and tools the way she lost her parents.</li>
+                <li>Hexagon forfeits the challenge and is eliminated shortly after, but not without gaining a new viewpoint on the world.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Although Hexagon has always had a good spatial intelligence, it seems that she vows to plot less abruptly after the events of "Shapeoff 5: BREAK-IT BRAWL".</li>
+                <li>Hexagon invented and mastered transportation via explosives herself.</li>
+                <li>Hexagon did not hesitate one bit when Triangle brought the idea up to blow up the school.</li>
+                <li>The bombing of the hospital looked targeted, but Hexagon actually did not know what the building was.</li>
+                <li>Hexagon was supposed to be an adventurer rather than a terrorist, but that was changed before the original YouTube series started because "it would be funnier".</li>
+                <li>Hexagon does not know about the current status of her family's mafia organization, and what has happened since her parents' passings.</li>
+                <li>Hexagon's destructive behavior in "Shapeoff 3: The Shape Search" was indeed a way to get revenge on the world.</li>
+                <li>Hexagon's backstory used to be a typical backstory of a generic chaotic-evil character being fascinated by events when they were younger, but it was changed to a more realistic backstory of loss and vengeance.</li>
+                <li>Hexagon did not have close friends growing up. She was closest with her parents.</li>
+                <li>Hexagon likes to target Triangle because she thinks it's just funny.</li>
+                <li>Hexagon carries, at all times, a M134 GAU-17 Gatling Gun, which can fire up to 6,000 rounds per minute.</li>
+                <li>Hexagon did not resist when the militia was dragging her away in "Shapeoff 5: BREAK-IT BRAWL".</li>
+                <li>Hexagon has a dream at the back of her head of becoming a mentor for rising mafia members.</li>
+                <li>Hexagon has had her signature headband since she was young, and always keeps it on because she thinks it's cool.</li>
+                <li>Hexagon does not have eyelashes because she is what many call a tomboy.</li>
+                <li>Hexagon enrolled herself into school only to make connections and then blow it up.</li>
+                <li>Octagon was Hexagon's first real friend outside of the mafia. They share a sibling-like bond.</li>
+                <li>Hexagon has dabbled in the art of mortuary cosmetology before, as demonstrated in "Shapeoff 2: Artistic Ambitions".</li>
+                <li>Hexagon gets flashbacks of her parents' passing frequently.</li>
+                <li>The constant cutting in the climax of "Shapeoff 5: BREAK-IT BRAWL" was to show the resemblance between Hexagon and the gang member who used a chainsaw on her parents.</li>
+                <li>Hexagon is the only character to get an episode dedicated to them and their lore.</li>
+                <li>Hexagon has the largest back pocket out of any Shapelander by far.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+      tablesoldier: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("tablesoldier")}
+              <div class="profile-info">
+                <h2 class="char-name">Table Soldier</h2>
+                <p class="char-quote">"I will be forever grateful. Farewell!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">🜬</span>
+                  <span class="species">Species: Shapelander...?</span>
+                  <span class="age">Age: Varies</span>
+                  <span class="age">Status: Varies</span>
+                </div>
+                <p class="char-description">
+                  Table Soldiers are trained militia sent by the Federal Republic of the Shapelands to keep order and enforce the law throughout!
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Table Soldiers follow every command their commander gives, no matter what.</li>
+                <li>Table Soldiers get lost when they are placed somewhere they are not assigned to.</li>
+                <li>Table Soldiers are direct and faithful. They do not question and do not object unless asking for clarification.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>Table Soldiers are able to share the same thoughts with one another. This has caused speculation that they are not natural Shapelanders...</li>
+                <li>Table Soldiers are always equipped with a top hat and a table. This makes them highly distinguishable to other circular shapes.</li>
+                <li>Not much is known about the Table Soldiers as they do not share any information and most information is deducted from official government books.</li>
+              </ul>
+            </div>
+          </div>
+        `,
+
+      // more characters here...
+    };
+
+    // Minimal runtime dataset used to render cards. Longer profiles live in `longProfiles` above.
+    const characterProfiles = {
+      circle: { name: 'Circle', tag: 'Teacher', accent: '#314ffd', arts: characterArtImages.circle },
+      triangle: { name: 'Triangle', tag: 'Misfortunate', accent: '#ff178f', arts: characterArtImages.triangle },
+      square: { name: 'Square', tag: 'Whisper', accent: '#0b0ea8', arts: characterArtImages.square },
+      rectangle: { name: 'Rectangle', tag: 'Peppy', accent: '#18e622', arts: characterArtImages.rectangle },
+      hexagon: { name: 'Hexagon', tag: 'Anarchy', accent: '#9d10df', arts: characterArtImages.hexagon },
+      octagon: { name: 'Octagon', tag: 'Snark', accent: '#970008', arts: characterArtImages.octagon },
+      oval: { name: 'Oval', tag: 'Somber', accent: '#ff6f0f', arts: characterArtImages.oval },
+      pentagon: { name: 'Pentagon', tag: 'Keen', accent: '#ffda35', arts: characterArtImages.pentagon },
+      rhombus: { name: 'Rhombus', tag: 'Testy', accent: '#4fadec', arts: characterArtImages.rhombus },
+      nonagon: { name: 'Nonagon', tag: 'Mediator', accent: '#e71465', arts: characterArtImages.nonagon },
+      trapezoid: { name: 'Trapezoid', tag: 'Cryptic', accent: '#ed6d98', arts: characterArtImages.trapezoid },
+
+      evilcircle: { name: 'Evil Circle', tag: 'Sovereign', accent: '#314ffd', arts: characterArtImages.placeholder },
+      eviltriangle: { name: 'Evil Triangle', tag: 'Aerial', accent: '#ff178f', arts: characterArtImages.placeholder },
+      evilsquare: { name: 'Evil Square', tag: 'Hypnotist', accent: '#0b0ea8', arts: characterArtImages.placeholder },
+      evilrectangle: { name: 'Evil Rectangle', tag: 'Commander', accent: '#18e622', arts: characterArtImages.placeholder },
+      evilhexagon: { name: 'Evil Hexagon', tag: 'Scout', accent: '#9d10df', arts: characterArtImages.placeholder },
+      eviloctagon: { name: 'Evil Octagon', tag: 'Archivist', accent: '#970008', arts: characterArtImages.placeholder },
+      eviloval: { name: 'Evil Oval', tag: 'Messenger', accent: '#ff6f0f', arts: characterArtImages.placeholder },
+      evilpentagon: { name: 'Evil Pentagon', tag: 'Engineer', accent: '#ffda35', arts: characterArtImages.placeholder },
+      evilrhombus: { name: 'Evil Rhombus', tag: 'Treasurer', accent: '#4fadec', arts: characterArtImages.placeholder },
+      eviltrapezoid: { name: 'Evil Trapezoid', tag: 'Scientist', accent: '#ed6d98', arts: characterArtImages.placeholder },
+
+      host: { name: 'Host', tag: 'Host', accent: '#ffc31d', arts: characterArtImages.placeholder },
+      sphere: { name: 'Sphere', tag: 'Heir', accent: '#f11515', arts: characterArtImages.placeholder },
+      decagon: { name: 'Decagon', tag: 'Genie', accent: '#c1ff70', arts: characterArtImages.decagon },
+      heart: { name: 'Heart', tag: 'Nurse', accent: '#ff76c1', arts: characterArtImages.placeholder },
+      cross: { name: 'Cross', tag: 'Doctor', accent: '#945e2b', arts: characterArtImages.placeholder },
+      tablesoldier: { name: 'Table Soldier', tag: 'Guard', accent: '#949494', arts: characterArtImages.tablesoldier },
+
+      unknown: { name: '"Unknown"', tag: 'Regent', accent: '#000000', arts: characterArtImages.placeholder },
+      mccirclesworker: { name: "McCircle's Worker", tag: 'Worker', accent: '#f3b645', arts: characterArtImages.placeholder },
+      mccirclesmanager: { name: "McCircle's Manager", tag: 'Manager', accent: '#d43131', arts: characterArtImages.placeholder },
+      papapolygonsworker: { name: "Papa Polygon's Worker", tag: 'Worker', accent: '#147219', arts: characterArtImages.placeholder },
+      fiveshapesworker: { name: "Five Shapes' Worker", tag: 'Worker', accent: '#af373d', arts: characterArtImages.placeholder },
+      hexagonsfather: { name: "Hexagon's Father", tag: 'Father', accent: '#0018df', arts: characterArtImages.placeholder },
+      hexagonsmother: { name: "Hexagon's Mother", tag: 'Mother', accent: '#9d00ff', arts: characterArtImages.placeholder },
+      alleywayshape: { name: 'Alleyway Shape', tag: 'Vendor', accent: '#5a7080', arts: characterArtImages.placeholder },
+      // 'minorcharacter-grid': ['unknown','mccirclesworker','mccirclesmanager','papapolygonsworker','fiveshapesworker','hexagonsfather','hexagonsmother','alleywayshape'],
+    };
+
+    // Ensure every character referenced by art or longProfiles has a placeholder profile so a card is rendered
+    (function ensureProfiles(){
+      const fromArts = Object.keys(characterArtImages);
+      const fromLong = Object.keys(longProfiles);
+      const all = new Set([...fromArts, ...fromLong]);
+      all.forEach(id => {
+        if (!characterProfiles[id]) {
+          characterProfiles[id] = {
+            name: id.charAt(0).toUpperCase() + id.slice(1),
+            tag: '',
+            accent: '#6b6bff',
+            arts: characterArtImages[id] || [],
+            unavailable: true // mark generated placeholders so they render as dashed / disabled
+          };
+        }
+      });
+
+      // Additionally, make any profile without a long-form profile unavailable by default
+      Object.keys(characterProfiles).forEach(id => {
+        if (!longProfiles[id]) characterProfiles[id].unavailable = true;
+      });
+    })();
+
+    function buildCard(id, profile) {
+      const avail = !profile.unavailable;
+      const card = document.createElement('article');
+      card.className = 'card character-card' + (avail ? '' : ' unavailable');
+      card.setAttribute('tabindex', '0');
+      card.dataset.characterId = id;
+      card.style.setProperty('--accent', profile.accent || '#5c5cff');
+
+      const img = document.createElement('img');
+      img.className = 'card-thumb';
+      img.src = (profile.arts && profile.arts[0] && profile.arts[0].src) || 'images/shapeoff-logo.png';
+      img.alt = profile.name || id;
+
+      const content = document.createElement('div');
+      content.className = 'card-content';
+      content.innerHTML = `<h3 class="card-title">${profile.name || id}</h3><p class="card-sub">${profile.tag || ''}</p>`;
+
+      card.appendChild(img);
+      card.appendChild(content);
+      return card;
+    }
+
+    function openPopupWith(id) {
+      const profile = characterProfiles[id];
+      const popup = document.getElementById('character-popup');
+      const inner = document.getElementById('popup-inner');
+
+      // If a long-form template exists for this character, use it directly
+      if (longProfiles[id]) {
+        inner.innerHTML = longProfiles[id];
+        popup.style.setProperty('--accent', (profile && profile.accent) || '#5c5cff');
+        popup.setAttribute('aria-hidden', 'false');
+        initArtSwitching(id);
+        popup.querySelector('.popup-close').focus();
+        return;
+      }
+
+      if (!profile) return;
+      // compose HTML for short profiles
+      let artBlock = '';
+      const arts = profile.arts || [];
+      if (arts.length === 1) {
+        artBlock = `<img src="${arts[0].src}" class="profile-art" alt="${profile.name}"><div class="art-title">${arts[0].title||''}</div>`;
+      } else if (arts.length > 1) {
+        artBlock = `<div class="profile-art-wrapper" data-character-id="${id}"><button class="art-arrow left">&lt;</button><img src="${arts[0].src}" class="profile-art" alt="${profile.name}"><button class="art-arrow right">&gt;</button><div class="art-counter">1 / ${arts.length}</div><div class="art-title">${arts[0].title||''}</div></div>`;
+      }
+
+      inner.innerHTML = `
+        <div class="profile-header">
+          ${artBlock}
+          <div class="profile-info">
+            <h2 class="char-name">${profile.name}</h2>
+            <p class="char-quote">${profile.tag ? `— ${profile.tag}` : ''}</p>
+            <div class="char-description">${profile.description || ''}</div>
+          </div>
+        </div>
+      `;
+
+      popup.style.setProperty('--accent', profile.accent || '#5c5cff');
+      popup.setAttribute('aria-hidden', 'false');
+      // init art switching
+      initArtSwitching(id);
+      // trap focus minimally by focusing close button
+      popup.querySelector('.popup-close').focus();
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('character-popup');
+      popup.setAttribute('aria-hidden','true');
+      document.getElementById('popup-inner').innerHTML = '';
+    }
+
+    function initArtSwitching(characterId) {
+      const wrapper = document.querySelector('.profile-art-wrapper[data-character-id="' + characterId + '"]');
+      if (!wrapper) return;
+      // avoid re-initializing controls if already set up
+      if (wrapper.dataset.artInit === 'true') return;
+      const arts = characterArtImages[characterId] || [];
+      if (arts.length <= 1) return;
+      wrapper.dataset.artInit = 'true';
+      let index = 0;
+      const img = wrapper.querySelector('.profile-art');
+      const counter = wrapper.querySelector('.art-counter');
+      const title = wrapper.querySelector('.art-title');
+      const left = wrapper.querySelector('.art-arrow.left');
+      const right = wrapper.querySelector('.art-arrow.right');
+
+      // build dots indicator
+      let dotsContainer = wrapper.querySelector('.art-dots');
+      if (!dotsContainer) {
+        dotsContainer = document.createElement('div');
+        dotsContainer.className = 'art-dots';
+        for (let i = 0; i < arts.length; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'art-dot' + (i === 0 ? ' active' : '');
+          btn.setAttribute('aria-label', 'View image ' + (i+1));
+          btn.dataset.index = i;
+          btn.addEventListener('click', (e) => { index = Number(e.currentTarget.dataset.index); update(); });
+          dotsContainer.appendChild(btn);
+        }
+        wrapper.appendChild(dotsContainer);
+      }
+
+      function update() {
+        img.src = arts[index].src;
+        if (counter) counter.textContent = `${index+1} / ${arts.length}`;
+        if (title) title.textContent = arts[index].title || '';
+        const dots = wrapper.querySelectorAll('.art-dot');
+        dots.forEach((d,i) => d.classList.toggle('active', i === index));
+      }
+
+      left.addEventListener('click', ()=>{ index = (index - 1 + arts.length) % arts.length; update(); });
+      right.addEventListener('click', ()=>{ index = (index + 1) % arts.length; update(); });
+
+      // keyboard support when the art wrapper is focused
+      wrapper.tabIndex = 0;
+      wrapper.addEventListener('keydown', (e)=>{
+        if (e.key === 'ArrowLeft') { index = (index - 1 + arts.length) % arts.length; update(); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { index = (index + 1) % arts.length; update(); e.preventDefault(); }
+      });
+
+      // initial render
+      update();
+    }
+
+    // Global interactions
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const grid = document.getElementById('character-grid');
+      const others = document.getElementById('others-grid');
+      // SECTION LISTS: Define which cards go into each grid by listing their ids here
+      // If `others-grid` is left empty, it will be auto-populated with any profiles not mentioned elsewhere.
+      const sectionLists = {
+        'character-grid': ['circle','triangle','square','rectangle','hexagon','octagon','oval','pentagon','rhombus','trapezoid','nonagon'],
+        'confederacy-grid': ['evilcircle','eviltriangle','evilsquare','evilrectangle','evilhexagon','eviloctagon','eviloval','evilpentagon','evilrhombus','eviltrapezoid'],
+        'noncontestant-grid': ['host','sphere','decagon','heart','cross','tablesoldier'],
+        'minorcharacter-grid': ['unknown','mccirclesworker','mccirclesmanager','papapolygonsworker','fiveshapesworker','hexagonsfather','hexagonsmother','alleywayshape'],
+      };
+
+      // Populate each listed section and ensure placeholder profiles exist for any ids listed
+      Object.entries(sectionLists).forEach(([gridId, ids]) => {
+        const gridEl = document.getElementById(gridId);
+        if (!gridEl) return;
+        ids.forEach((id, idx) => {
+          if (!characterProfiles[id]) {
+            characterProfiles[id] = { name: id.charAt(0).toUpperCase() + id.slice(1), tag: '', accent: '#777', arts: [], unavailable: true };
+          }
+          gridEl.appendChild(buildCard(id, characterProfiles[id]));
+        });
+      });
+
+      // If 'others-grid' wasn't explicitly filled, add any remaining profiles that aren't listed
+      if (sectionLists['others-grid'] && sectionLists['others-grid'].length === 0) {
+        const listed = new Set([].concat(...Object.values(sectionLists)));
+        const othersGridEl = document.getElementById('others-grid');
+        if (othersGridEl) {
+          Object.keys(characterProfiles).forEach(id => { if (!listed.has(id)) othersGridEl.appendChild(buildCard(id, characterProfiles[id])); });
+        }
+      }
+
+      // clicks
+      document.body.addEventListener('click', (e)=>{
+        const card = e.target.closest('.character-card');
+        if (card && !card.classList.contains('unavailable')) {
+          const id = card.dataset.characterId;
+          openPopupWith(id);
+        }
+      });
+
+      // keyboard activation (Enter) for accessibility — respect `unavailable` state
+      document.addEventListener('keydown', (e)=>{
+        if (e.key === 'Enter' && document.activeElement && document.activeElement.classList.contains('character-card') && !document.activeElement.classList.contains('unavailable')) {
+          const id = document.activeElement.dataset.characterId;
+          openPopupWith(id);
+        }
+      });
+
+      // popup close controls
+      const popup = document.getElementById('character-popup');
+      popup.querySelector('.popup-close').addEventListener('click', closePopup);
+      popup.addEventListener('click', (e)=>{ if (e.target === popup) closePopup(); });
+      document.addEventListener('keyup', (e)=>{ if (e.key === 'Escape' && popup.getAttribute('aria-hidden') === 'false') closePopup(); });
+    });
+  </script>
+</body>
+</html>

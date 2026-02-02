@@ -14,6 +14,11 @@
   --btn-sodr: #8e3cda;
   --btn-woim: #51bcee;
   --btn-colorseries: #2357e6;
+  --btn-rgdr: #3b0dbb;
+  --btn-distancezero: #610000;
+  --btn-farmrice: #45cccc;
+  --btn-dcm: #2cb11f;
+  --btn-black: #000000;
 }
 
 
@@ -262,6 +267,26 @@ body {
   --btn-bg: var(--btn-colorseries);
   --btn-text: rgb(255, 255, 255);
 }
+.button.rgdr {
+  --btn-bg: var(--btn-rgdr);
+  --btn-text: rgb(255, 255, 255);
+}
+.button.distancezero {
+  --btn-bg: var(--btn-distancezero);
+  --btn-text: rgb(255, 255, 255);
+}
+.button.farmrice {
+  --btn-bg: var(--btn-farmrice);
+  --btn-text: rgb(255, 255, 255);
+}
+.button.dcm {
+  --btn-bg: var(--btn-dcm);
+  --btn-text: rgb(255, 255, 255);
+}
+.button.black {
+  --btn-bg: var(--btn-black);
+  --btn-text: rgb(255, 255, 255);
+}
 
 /* =========================
    SOCIAL BUTTONS
@@ -444,6 +469,209 @@ body {
   font-size: 0.9rem;
   color: #ccc;
 }
+
+/* =========================
+   CHARACTER PAGE & POPUPS
+   - Shared rules for the character bios page and popup dialog
+   - Moved from so-bios.html for reuse across the site
+========================= */
+
+.intro-box { padding: 48px 20px; max-width: 900px; margin: 20px auto 32px; text-align:center; }
+.intro-box h2 { font-size: 2rem; }
+.intro-box p { color: #ccc; margin-top: 8px; }
+
+.character-section { padding: 36px 20px; max-width: 1100px; margin: 0 auto; }
+.character-section h2 { color: #fff; border-bottom: 2px solid #444; padding-bottom: 10px; margin-bottom: 20px; }
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr)); /* limit to 4 columns for layout consistency */
+  gap: 2rem; /* match spacing used in other card grids */
+}
+
+@media (max-width: 900px) {
+  .character-grid { grid-template-columns: repeat(3, minmax(200px, 1fr)); }
+}
+@media (max-width: 640px) {
+  .character-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+}
+@media (max-width: 420px) {
+  .character-grid { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+}
+
+/* character cards reuse .card visuals but should match regular .card layout */
+.card.character-card {
+  background: #1e1e1e;
+  color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  transition: transform 0.2s, border-color 0.2s;
+  border: 2px solid #333;
+  border-top: 4px solid var(--accent,#5c5cff);
+  padding: 16px; /* match .card spacing */
+  display: flex;
+  flex-direction: column;
+}
+.card.character-card:hover { transform: translateY(-3px); border-color: #555; }
+
+/* thumbnails for character cards are full-bleed and 1:1 */
+.card.character-card .card-thumb {
+  width: calc(100% + 32px); /* extend into the card padding like other cards */
+  margin: -16px 0 12px -16px; /* align with card padding */
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 12px 12px 0 0; /* match card rounded corners */
+}
+
+.card.character-card .card-content {
+  padding: 0 8px 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.card.character-card .card-title {
+  font-size: 1.05rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card.character-card .card-sub {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* dashed/disabled placeholder style matches episode unreleased look!!!!!!!!!! */
+.card.unavailable {
+  opacity: 0.5;
+  border: 2px dashed rgba(255, 255, 255, 0.25) !important;
+  pointer-events: none;
+  filter: grayscale(60%);
+}
+
+.character-info { padding: 10px 8px; }
+.character-name { font-weight:700; margin-bottom:6px; }
+.character-tag { display:inline-block; padding:4px 8px; border-radius:6px; font-weight:700; color:#fff; background:var(--accent,#5c5cff); }
+
+.unavailable { opacity:.45; filter:grayscale(70%); pointer-events:none; border-style: dashed; }
+
+/* Popup / dialog */
+.popup-overlay { position: fixed; inset: 0; display: none; align-items:center; justify-content:center; background: rgba(10,10,10,0.85); z-index:1000; }
+.popup-overlay[aria-hidden="false"] { display:flex; }
+
+/* popup content */
+.popup-content { position: relative; background:#1a1a1a; color:#fff; width: min(920px, 94vw); max-height: 92vh; overflow:auto; border-radius:12px; padding: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.6); }
+
+/* Styled scrollbar to match site: subtle, thin, and slightly bright on hover */
+.popup-content::-webkit-scrollbar { width: 12px; height: 12px; }
+.popup-content::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 10px; }
+.popup-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); border-radius: 10px; border: 3px solid transparent; background-clip: padding-box; }
+.popup-content::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
+
+/* Firefox scrollbar tuning */
+.popup-content { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.06) rgba(255,255,255,0.02); }
+
+/* Close (X) button styled as circular icon to match site controls */
+.popup-close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.06);
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: transform 0.12s, background 0.12s, box-shadow 0.12s, border-color 0.12s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.popup-close:hover { transform: scale(1.05); background: rgba(255,255,255,0.08); }
+.popup-close:active { transform: scale(0.98); }
+/* remove accent-focused ring; keep a subtle neutral focus hint for accessibility */
+.popup-close:focus { outline: none; box-shadow: 0 0 0 6px rgba(255,255,255,0.03); }
+
+/* Internal spacing for long-form profiles so text isn't flush with edges */
+.character-profile { padding: 0 8px; }
+.profile-info { padding: 10px 8px 8px 8px; }
+.char-details { margin-top: 20px; padding: 0 8px 12px 8px; line-height: 1.7; }
+
+/* Headings inside popups should be slightly larger for emphasis */
+.popup-content h2 { font-size: 1.5rem; margin-bottom: 8px; }
+.popup-content h3 { font-size: 1.25rem; margin-top: 12px; margin-bottom: 8px; }
+.popup-content p, .popup-content ul { max-width: 100%; margin-bottom: 10px; }
+
+/* Quote immediately after the name — stylized and separated */
+.char-quote { font-style: italic; opacity: 0.9; margin-top: 6px; margin-bottom: 10px; font-size: 1rem; }
+
+/* Compact meta line (gender, species, etc) that appears after the quote */
+.char-meta { color: #cfcfcf; font-size: 0.9rem; display: block; margin-bottom: 8px; }
+.char-meta .meta-item { margin-right: 8px; padding-right: 8px; border-right: 1px solid rgba(255,255,255,0.04); }
+.char-meta .meta-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+/* profile layout: more breathing room and alignment */
+.profile-header { display:flex; gap:28px; align-items:center; flex-wrap:wrap; }
+.profile-art { width: 240px; height: 240px; object-fit: cover; border-radius:10px; background:#222; }
+.profile-info { flex:1; min-width:260px; display:flex; flex-direction:column; justify-content:center; }
+
+/* Art wrapper: small carousel controls that match the site's carousel style */
+.profile-art-wrapper { position: relative; display: inline-block; }
+.profile-art-wrapper.single { display: inline-block; }
+
+.profile-art-wrapper .art-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: transform 0.12s, background 0.12s;
+}
+.profile-art-wrapper .art-arrow.left { left: 8px; }
+.profile-art-wrapper .art-arrow.right { right: 8px; }
+.profile-art-wrapper .art-arrow:hover { transform: translateY(-50%) scale(1.05); background: rgba(0,0,0,0.7); }
+  /* remove visible focus/active ring for mouse interactions; keep keyboard focus subtle elsewhere */
+  .profile-art-wrapper .art-arrow:focus,
+  .profile-art-wrapper .art-arrow:active { outline: none; box-shadow: none; }
+  .profile-art-wrapper .art-arrow { -webkit-appearance: none; appearance: none; }
+
+  /* hide the textual counter (e.g., "1 / 3") and center the art title instead */
+  .art-counter { display: none !important; }
+  .art-title { margin-top: 8px; color: #ddd; font-size: 0.95rem; text-align: center; display:block; width:100%; }
+
+  /* art dots to indicate which image is active */
+  .art-dots { display:flex; gap:8px; justify-content:center; margin-top:10px; }
+  .art-dots button { width:10px; height:10px; border-radius:999px; border:none; background:#444; opacity:0.9; cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.4); -webkit-appearance: none; appearance:none; }
+  .art-dots button.active { background: #eee; opacity: 1; box-shadow: 0 6px 14px rgba(0,0,0,0.45); }
+  .art-dots button:focus, .art-dots button:active { outline:none; box-shadow:none; }
+@media (max-width:560px){
+  .profile-header{flex-direction:column;align-items:center}
+  .profile-art{width:180px;height:180px}
+  .profile-art-wrapper .art-arrow{ width:36px; height:36px; }
+  .popup-content h3 { font-size: 1.1rem; }
+}
+
+
 
 /* =========================
    CAROUSEL (cards style)

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Games - TimKS</title>
+  <title>Games – TimKS</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="images/icon.jpg" type="image/jpg">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+<!-- NAVBAR -->
+<nav class="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="logo">
       <img src="images/icon.jpg" alt="Logo">
@@ -26,14 +26,98 @@
   </div>
 </nav>
 
-  <!-- HERO -->
-  <header class="banner">
-    <img src="images/icon.jpg" alt="Logo">
-    <h1>This page is under construction!</h1>
-    <p class="lead">
-      I'm working on redesigning the entire website, so please bare with me as I make improvements!
-    </p>
-  </header>
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+    <div class="text-card">
+      <h2>📚 A Little Context</h2>
+      <p>
+        I've been creating games using Roblox Studio since I was about 9 years old. Over the years,
+        I've been slowly improving in both skill and ambition, creating more complex and engaging experiences.
+        As of now, I'm well-versed in all aspects of game development, including scripting, modeling and UI design,
+        but I tend to gravitate towards scripting and UI design the most.
+      </p>
+      <p>
+        My current project is <strong>ball game</strong>, a game all about balls and lore. I started it back in 2024 and it gets regular updates
+        every couple of months when I have time.
+      </p>
+    </div>
+  </div>
+</section>
 
-</body>
-</html>
+<section class="section">
+    <div class="container">
+      <h2 class="section-title">My Current Project</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <img src="images/bg-ballgame.png" alt="Ball Game thumbnail" class="card-thumb">
+          <h2>ball game: faraway facilities</h2>
+          <p>The ultimate incremental simulator about one thing: BALLS.</p>
+          <a href="ballgame.html" class="button ballgame">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+  <div class="container">
+    <h2 class="section-title">Other Games I've Made</h2>
+
+    <div class="carousel" id="myCarousel">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/bg-distancezero.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>Distance Zero (2024)</h1>
+                  <p>This is a remake to a friend's game on Blockate. Survive the nights from a dangerous and mysterious entity trying to flood the sewers.</p>
+                  <a class="button black" href="https://www.roblox.com/games/16651874237" target="_blank">Visit (www.roblox.com)</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/bg-farmrice.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>farm rice (2023)</h1>
+                  <p>Harvest boundless rice in the fields and sell rice to get money and cosmetics. The development of this game played a pivotal role in my growth as a game developer.</p>
+                  <a class="button black" href="https://www.roblox.com/games/15091282893" target="_blank">Visit (www.roblox.com)</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="carousel-slide">
+            <article class="card">
+              <div class="card-bg" style="background-image: url('images/bg-dcm.png')"></div>
+              <div class="card-content">
+                <div class="card-text">
+                  <h1>Doge Coin Miner (2021)</h1>
+                  <p>A "low-poly ore mining" game I made back in 2021 that kickstarted my game development journey. Many remakes were started that never came to fruition, but the world still lives on in ball game as the newest zone.</p>
+                  <a class="button black" href="https://www.roblox.com/games/6513807306" target="_blank">Visit (www.roblox.com)</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- add more here -->
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" aria-label="Next">›</button>
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="myCarouselDots"></div>
+  </div>
+</section>
+
+  <script src="script.js"></script>
