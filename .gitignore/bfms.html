@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/icon.jpg" type="image/jpg" />
+  <title>Battle For Mom Simulator</title>
+
+  <style>
+    .series-logo-container {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+
+    .series-logo {
+      max-width: 300px;
+      height: auto;
+    }
+
+    .series-intro {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .series-intro h2 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+    }
+
+    .series-intro p {
+      font-size: 1.2em;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .episode-grid {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .episode-title {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .episode-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .episode-card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease;
+    }
+
+    .episode-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .episode-card.disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.5;
+      border: 2px dashed #555;
+      box-shadow: none;
+    }
+
+    .episode-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background-color: #444;
+    }
+
+    .episode-info {
+      padding: 14px;
+      background-color: #222;
+    }
+
+    .episode-info h4 {
+      font-size: 1.2em;
+      margin: 0 0 6px;
+    }
+
+    .episode-info p {
+      font-size: 0.95em;
+      margin-bottom: 10px;
+      color: #aaa;
+    }
+
+    .watch-button {
+      background-color: #dc3545;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease;
+    }
+
+    .watch-button:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+
+        const links = document.querySelectorAll('.nav-links a');
+        const currentPage = window.location.pathname.split('/').pop();
+        links.forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+  </script>
+
+  <!-- Banner -->
+  <div class="banner-container">
+    <img src="images/banner.png" alt="BFMS Banner Background" />
+    <img src="images/bfms-logo.png" alt="BFMS Logo" />
+  </div>
+
+  <!-- Intro -->
+  <section class="series-intro">
+    <h2>Battle For Mom Simulator</h2>
+    <p class="subheading">A joke object show about fighting for the ultimate video game.</p>
+    <p>
+      <strong>BFMS</strong> is a satirical "animated" object show, currently with two seasons. There's not much in the world of Battle For Mom Simulator other than poorly drawn shapes and depressing voice acting.<br>... or is there?
+    </p>
+  </section>
+
+  <!-- Season 1 -->
+  <section class="episode-grid">
+    <h3 class="episode-title">Season 1</h3>
+    <div class="episode-buttons">
+      <!-- Season 1 Episodes -->
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/C9gev7P7Pfk/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 1: I want it now</h4>
+          <p>Aired: August 24, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=C9gev7P7Pfk" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/d-eNq4zWoTA/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 2: Give it to me</h4>
+          <p>Aired: August 25, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=d-eNq4zWoTA" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/sdByrgEy8mo/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 3: Can I have it</h4>
+          <p>Aired: August 26, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=sdByrgEy8mo" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/tB5RMO_yNAg/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 4: Hand it over</h4>
+          <p>Aired: August 27, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=tB5RMO_yNAg" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/y67nMeCMI74/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 5: Just hand it to me</h4>
+          <p>Aired: August 28, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=y67nMeCMI74" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/bwdwPRNUFXM/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 6: Please I need it</h4>
+          <p>Aired: August 29, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=bwdwPRNUFXM" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/cEU5fsZYmvw/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 7: Dude give it already</h4>
+          <p>Aired: August 30, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=cEU5fsZYmvw" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/tCIk4Pg68b0/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 8: I'm getting real mad, you better hand it over soon</h4>
+          <p>Aired: August 31, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=tCIk4Pg68b0" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/1xXf1BzFaQM/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 9: I think I got it</h4>
+          <p>Aired: November 21, 2022</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=1xXf1BzFaQM" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <!-- Add more cards here... -->
+    </div>
+  </section>
+
+  <!-- Season 2 -->
+  <section class="episode-grid">
+    <h3 class="episode-title">Season 2</h3>
+    <div class="episode-buttons">
+      <!-- Released Season 2 Episode -->
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/22GKRiEM2rw/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 1: A Craggy Start</h4>
+          <p>Aired: April 10, 2023</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=22GKRiEM2rw" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/XI5M2Ehug-E/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 2: One, Two, Three, Burn!</h4>
+          <p>Aired: April 19, 2023</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=XI5M2Ehug-E" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/AA7oOXprDkc/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 3: Shape Scramble</h4>
+          <p>Aired: April 20, 2023</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=AA7oOXprDkc" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/Z8yNQLNv5JI/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 4: A Terrible Diagnosis</h4>
+          <p>Aired: February 1, 2024</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=Z8yNQLNv5JI" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/ayCAUmLLkG4/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 5: You're not the main character!</h4>
+          <p>Aired: February 13, 2024</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=ayCAUmLLkG4" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/HsQbTHPOo-4/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 6: The Unbelievably Exciting Quest For A Rock</h4>
+          <p>Aired: February 18, 2024</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=HsQbTHPOo-4" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/TGsvcPQBr28/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 7: Acquired Specialness</h4>
+          <p>Aired: June 30, 2024</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=TGsvcPQBr28" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <div class="episode-card">
+        <img src="https://img.youtube.com/vi/2Hh5BZl5-tY/hqdefault.jpg" class="episode-thumb" alt="Episode 1 Thumbnail" />
+        <div class="episode-info">
+          <h4>Episode 8: Six-Sided Freak</h4>
+          <p>Aired: June 13, 2025</p>
+          <a class="watch-button" href="https://www.youtube.com/watch?v=2Hh5BZl5-tY" target="_blank">▶ Watch</a>
+        </div>
+      </div>
+
+      <!-- Placeholder for unreleased episode -->
+      <div class="episode-card disabled">
+        <div class="episode-thumb"></div>
+        <div class="episode-info">
+          <h4>Episode 9: Chlamydia trachomatis</h4>
+          <p>Coming Soon</p>
+        </div>
+      </div>
+
+      <div class="episode-card disabled">
+        <div class="episode-thumb"></div>
+        <div class="episode-info">
+          <h4>Episode 10: Two Cents</h4>
+          <p>Coming Soon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

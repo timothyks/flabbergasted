@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/icon.jpg" type="image/jpg">
+    <title>Shapeoff</title>
+
+    <style>
+        .shapeoff-logo-container {
+          text-align: center;
+          margin-top: 20px;
+          margin-bottom: 0px;
+        }
+    
+        .shapeoff-logo {
+          max-width: 300px;
+          height: auto;
+        }
+    
+        .shapeoff-intro {
+          text-align: center;
+          padding: 40px 20px;
+          max-width: 800px;
+          margin: 0 auto 40px;
+        }
+    
+        .shapeoff-intro h2 {
+          font-size: 2.5em;
+          margin-bottom: 15px;
+        }
+    
+        .shapeoff-intro p {
+          font-size: 1.2em;
+          color: #ccc;
+          line-height: 1.6;
+        }
+    
+        .episode-grid {
+          text-align: center;
+          margin-bottom: 60px;
+        }
+    
+        .title {
+          font-size: 2em;
+          margin-bottom: 20px;
+        }
+    
+        .episode-buttons {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 20px;
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+    
+        .episode-card {
+          background-color: #1a1a1a;
+          border-radius: 10px;
+          overflow: hidden;
+          text-decoration: none;
+          color: white;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.2s ease;
+        }
+    
+        .episode-card:hover {
+          transform: translateY(-3px);
+        }
+    
+        .episode-card.disabled {
+          cursor: not-allowed;
+          pointer-events: none;
+          opacity: 0.5;
+          border: 2px dashed #555;
+          box-shadow: none;
+        }
+    
+        .episode-thumb {
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          background-color: #444;
+        }
+    
+        .episode-thumb.placeholder {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.2em;
+          color: #aaa;
+        }
+    
+        .episode-info {
+          padding: 12px;
+          font-weight: bold;
+          text-align: center;
+          background-color: #222;
+          font-size: 1em;
+        }
+
+        .episode-title {
+  font-size: 1em;
+  margin-bottom: 6px;
+}
+
+.episode-meta {
+  font-size: 0.85em;
+  color: #aaa;
+  line-height: 1.3;
+}
+
+.episode-card.disabled .episode-title {
+  color: #aaa;
+}
+
+.episode-card.disabled .episode-meta {
+  color: #666;
+}
+
+        .extras-grid {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.extras-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.extra-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.extra-title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.extra-description {
+  font-size: 1em;
+  color: #ccc;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.tag {
+  color: white;
+  font-size: 0.75em;
+  padding: 2px 6px;
+  margin-left: 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.tag.mature { background-color: rgb(158, 10, 10); }
+.tag.yt { background-color: #dc3545; }
+.tag.story { background-color: #923ef1; }
+.tag.expanded { background-color: #d1921c; }
+.tag.bts { background-color: #32b184; }
+.tag.new { background-color: #2dd616; }
+.tag.coming-soon {
+  background-color: #57471d;
+}
+.watch-button {
+      background-color: #dc3545;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease;
+    }
+
+    .watch-button:hover {
+      background-color: #c82333;
+    }
+    .fnfmod-grid {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.fnfmod-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.fnfmod-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.fnfmod-track-title {
+  font-size: 1.4em;
+  margin-bottom: 8px;
+}
+
+.fnfmod-composer {
+  font-size: 0.95em;
+  color: #bbb;
+  margin-bottom: 15px;
+}
+
+.custom-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 600px;
+  gap: 10px;
+}
+
+.custom-divider .line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, #555, #999, #555);
+  border-radius: 1px;
+}
+
+.custom-divider .divider-icon {
+  font-size: 1.5em;
+  color: #ccc;
+  padding: 0 10px;
+  user-select: none;
+}
+
+/* Coming Soon Button (disabled) */
+.feature-button.disabled {
+  background-color: #7f8c8d; /* Gray out the button */
+  color: #ecf0f1;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: background-color 0.2s ease;
+}
+
+.feature-button.disabled:hover {
+  background-color: #7f8c8d; /* Keep it gray on hover */
+}
+
+
+      </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+      
+            // ✅ Highlight active link
+            const links = document.querySelectorAll('.nav-links a');
+            const currentPage = window.location.pathname.split('/').pop();  // Get the current page's file name
+      
+            links.forEach(link => {
+              // Check if the link's href matches the current page URL
+              if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');  // Add active class
+              }
+            });
+          });
+      </script>
+  
+  
+  
+
+<!-- Shapeoff Banner -->
+<div class="banner-container">
+    <img src="images/banner.png" alt="Shapeoff Banner Background" />
+    <img src="images/shapeoff-logo.png" alt="Shapeoff Logo" />
+  </div>
+
+  <div class="announcement-box">
+    <div class="announcement-text">
+      <h2>🚨 Character Bios are finally here!</h2>
+      <div class="subheading">Long awaited lore drops, available now!</div>
+      <p>The Character Bios page is finally live! It contains information about the contestants, some even unmentioned in the series! Scroll down to the Extras section to check it out!</p>
+    </div>
+  </div>
+  
+  <!--
+  <div class="announcement-box">
+    <div class="announcement-text">
+      <h2>🚨 Shapeoff GAME announced!</h2>
+      <div class="subheading">A new project centered around the Shapeoff universe!</div>
+      <p>The first ever Shapeoff-based game <strong>Horror Hospital: Shapeoff 5 Alt</strong> is now in development and will exclusively be on Roblox! Devlog/updates can be found on Bluesky (@timks.net).</p>
+      <p>The project is a retelling of the events at the hospital in "Shapeoff 5: BREAK-IT BRAWL" in an alternate universe. Follow Cross as he escapes his former workplace in hopes of surviving his old coworker's wrath.</p>
+    </div>
+      <div class="announcement-image">
+      <img src="images/horror-hospital-promo.png" alt="Promo Art">
+    </div>
+  </div>
+  -->
+  
+  <!-- Shapeoff Intro -->
+
+  <section class="intro-box">
+    <h2>📺 Shapeoff Web Series</h2>
+    <p class="subheading">A surreal competition with mysterious eyes watching...</p>
+    <p>
+      <strong>Shapeoff (scripts)</strong> is a theoretical web series following a cryptic host and ten uniquely shaped contestants, each competing for sovereignty over the Shapelands. But something isn't quite right...  
+    </p>
+    <p>
+      As tensions continuously rise, the Shapelanders face both physical and psychological challenges, all while the presence of the mysterious government looms closer.
+    </p>
+  </section>
+  
+  <section class="intro-box">
+    <h2>📚 A Brief History</h2>
+    <p class="subheading">A strange little legacy that keeps rebooting.</p>
+    <p>
+      Born in 2022 from ideas I had back in 2018, <strong>Shapeoff</strong> began as a YouTube animated series. It ran for 3 episodes before being cancelled due to burnout. Later, episodes 4–6 were revived as slideshow presentations by a friend, leading to a final animated episode 7.
+    </p>
+    <p>
+      Today, Shapeoff lives on in screenplay format. With 6 episodes written (some over 40 minutes in length!), the series continues as a surreal blend of satire, mystery, and shape-based drama.
+    </p>
+  </section>
+
+  <!-- Stylish Divider -->
+<div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">⬤</span>
+    <span class="line"></span>
+  </div>
+  
+  
+  <!-- Episodes Grid -->
+  <section class="episode-grid">
+    <h3 class="title">Episodes (Scripts)</h3>
+    <div class="episode-buttons">
+  
+      <!-- Released Episodes -->
+      <a href="so1.html" class="episode-card active" target="_blank">
+        <img src="images/ep1-thumb.png" alt="Episode 1 Thumbnail" class="episode-thumb">
+        <div class="episode-info">
+          <div class="episode-title">Episode 1: A Rocky Start</div>
+          <div class="episode-meta">Aired: June 13, 2024</div>
+          <div class="episode-meta">Runtime: 17 mins</div>
+        </div>
+      </a>
+  
+      <a href="so2.html" class="episode-card active" target="_blank">
+        <img src="images/ep2-thumb.png" alt="Episode 2 Thumbnail" class="episode-thumb">
+        <div class="episode-info">
+          <div class="episode-title">Episode 2: Artistic Ambitions</div>
+          <div class="episode-meta">Aired: June 21, 2024</div>
+          <div class="episode-meta">Runtime: 25 mins</div>
+        </div>
+      </a>
+  
+      <a href="so3.html" class="episode-card active" target="_blank">
+        <img src="images/ep3-thumb.png" alt="Episode 3 Thumbnail" class="episode-thumb">
+        <div class="episode-info">
+          <div class="episode-title">Episode 3: The Shape Search</div>
+          <div class="episode-meta">Aired: July 3, 2024</div>
+          <div class="episode-meta">Runtime: 25 mins</div>
+        </div>
+      </a>
+  
+      <a href="so4.html" class="episode-card active" target="_blank">
+        <img src="images/ep4-thumb.png" alt="Episode 4 Thumbnail" class="episode-thumb">
+        <div class="episode-info">
+          <div class="episode-title">Episode 4: Mind the Gap</div>
+          <div class="episode-meta">Aired: August 17, 2024</div>
+          <div class="episode-meta">Runtime: 40 mins</div>
+        </div>
+      </a>
+  
+      <a href="so5.html" class="episode-card active" target="_blank">
+        <img src="images/ep5-thumb.jpg" alt="Episode 5 Thumbnail" class="episode-thumb">
+        <div class="episode-info">
+          <div class="episode-title">Episode 5: BREAK-IT BRAWL</div>
+          <div class="episode-meta">Aired: November 29, 2024</div>
+          <div class="episode-meta">Runtime: 40 mins</div>
+        </div>
+      </a>
+
+      <a href="so6.html" class="episode-card active" target="_blank">
+        <img src="images/ep6-thumb.png" alt="Episode 6 Thumbnail" class="episode-thumb">
+        <div class="episode-info">
+          <div class="episode-title">Episode 6: Split by Stone</div>
+          <div class="episode-meta">Aired: July 11, 2025</div>
+          <div class="episode-meta">Runtime: 40 mins</div>
+        </div>
+      </a>
+  
+      <!-- Unreleased Episodes -->
+  
+      <div class="episode-card disabled">
+        <div class="episode-thumb placeholder"></div>
+        <div class="episode-info">
+          <div class="episode-title">Episode 7: Intertwined</div>
+          <div class="episode-meta">Coming Soon</div>
+          <div class="episode-meta">Runtime: TBA</div>
+        </div>
+      </div>
+  
+      <div class="episode-card disabled">
+        <div class="episode-thumb placeholder"></div>
+        <div class="episode-info">
+          <div class="episode-title">Episode 8: Threshold</div>
+          <div class="episode-meta">Coming Soon</div>
+          <div class="episode-meta">Runtime: TBA</div>
+        </div>
+      </div>
+  
+      <div class="episode-card disabled">
+        <div class="episode-thumb placeholder"></div>
+        <div class="episode-info">
+          <div class="episode-title">Episode 9: What's Left Behind</div>
+          <div class="episode-meta">Coming Soon</div>
+          <div class="episode-meta">Runtime: TBA</div>
+        </div>
+      </div>
+  
+      <div class="episode-card disabled">
+        <div class="episode-thumb placeholder"></div>
+        <div class="episode-info">
+          <div class="episode-title">Episode 10: Shape the Future</div>
+          <div class="episode-meta">Coming Soon</div>
+          <div class="episode-meta">Runtime: TBA</div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+  <!-- Stylish Divider -->
+<div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">▲</span>
+    <span class="line"></span>
+  </div>
+
+  <!-- Extras Section -->
+<section class="extras-grid">
+    <h3 class="title">Extras</h3>
+    <div class="extras-cards">
+
+      <div class="extra-card">
+        <h4 class="extra-title">✨ Character Bios<br><span class="tag new">NEW</span><span class="tag expanded">Expanded</span></h4>
+        <p class="extra-description">Learn more about the characters of the Shapeoff universe and discover things unmentioned in the main series.</p>
+        <a href="so-bios.html" class="feature-button shapeoff">View Page</a>
+      </div>
+
+        <div class="extra-card">
+            <h4 class="extra-title">Original Animated Series (YouTube)<br><span class="tag yt">YouTube</span></h4>
+            <p class="extra-description">The original 2022 animated series.</p>
+            <a href="https://www.youtube.com/playlist?list=PLEvQoFkGfPWxLIG14MIAjOwQKpeSHq0qA" target="_blank" class="watch-button">▶ View Playlist</a>
+          </div>
+          
+          <div class="extra-card">
+            <h4 class="extra-title">sO do YoU gUyS sTiLl wAnT ScHoOl?<br><span class="tag yt">YouTube</span></h4>
+            <p class="extra-description">Triangle's had enough of the original Shapeoff 1 cycle and crashes out.</p>
+            <a href="https://youtu.be/eHGnT5KEaR4" target="_blank" class="watch-button">▶ Watch</a>
+          </div>
+
+          <div class="extra-card">
+            <h4 class="extra-title">mafia kid fulfills their life dream of airport terrorism<br><span class="tag story">Story</span><span class="tag yt">YouTube</span></h4>
+            <p class="extra-description">Another awesome video from Hexagon, now featuring Triangle!! (Anything said in the video is a joke.)</p>
+            <a href="https://youtu.be/WDL8hMSEqb0" target="_blank" class="watch-button">▶ Watch</a>
+          </div>
+          
+      <div class="extra-card">
+        <h4 class="extra-title">Shape Class 14: Seven<br><span class="tag story">Story</span><span class="tag mature">13+</span></h4>
+        <p class="extra-description">Circle helps Hexagon conduct a scientific experiment on the anatomy of shapes.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vTGb_t-eAq3TgvoqxuCRK-biYRdl8EmeDXUbYEc9xCcDGaoxzd33YpBKBTpCjqyu3kXmwZcUSYWyB7T/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Host & Triangle At The Campfire<br><span class="tag story">Story</span><span class="tag mature">Mature</span></h4>
+        <p class="extra-description">Based on an alternate universe. Host and Triangle share a quiet but eventful moment at a campfire hidden in the woods.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vRsst9MnRvSC9ww8CjoOk5rgsnNOD6FXbo7XcjEMStzI7fBCiRQipyHfYW0dPF0p-C3LIRAr2XM5rex/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Hexagon's Ultimate Sleep Guide: Sleep Forever!<br><span class="tag story">Story</span><span class="tag mature">13+</span></h4>
+        <p class="extra-description">Hexagon starts a social media account and hopes to educate people on questionable practices.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vQF6QzsWBwJnaVvMUYi-cFkNm5tQ8kPkrikkLvyBdMU9EB1ZSmzsHVg80vPdXiGeAWRVyuxVyrZRdqH/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">A Day In Shaparis<br><span class="tag story">Story</span><span class="tag mature">13+</span></h4>
+        <p class="extra-description">Rhombus and Octagon compete to find the best engagement ring for their significant others.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vRP9SOsONF3PTbnBK7DC7_5GNGMdiTkMCCYeoYPFaphrzs1KBXubTgLwCL9dbe1BO_VojinY6usyhNY/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Save Me Some Semen!<br><span class="tag story">Story</span><span class="tag mature">Mature</span></h4>
+        <p class="extra-description">Octagon is given a bucket, thinking he can do whatever he wants with it.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vR1x70kjm7ynVN1Hf1rMuwsHMIuwGofdBsJPA0GS2h0Kfgea3Z-BZYNsqqo52tiXijbkEEorSu0vIV0/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+  
+      <div class="extra-card">
+        <h4 class="extra-title">Original Shapeoff 7 Flashback Script<br><span class="tag bts">BTS</span></h4>
+        <p class="extra-description">This script was part of the original animated Shapeoff 7.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vSQwxbThdj9jORmadKX3KZ-kbo4GerbRBCW8vHlrh9xHQWPWA86xrvlb-7uD2oAoHTtTVNW9QH0k6UN/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+        <h4 class="extra-title">Original Shapeoff 4 Script (Scrapped)<br><span class="tag bts">BTS</span></h4>
+        <p class="extra-description">The original Shapeoff 4 script was made back in July 2022 following the release of the animated Shapeoff 3. However, the script never came to life and an alternate version was made by a friend.</p>
+        <a href="https://docs.google.com/document/d/e/2PACX-1vQ2FMxsl5fgg9EGAYr1smXyqzqQj_QKhPaVNWkSAt0aUwbPX5rJEii8vKjqoyquyctgbomKJndvpgw7/pub" target="_blank" class="feature-button shapeoff">View Now</a>
+      </div>
+
+      <div class="extra-card">
+          <h4 class="extra-title">Shapeoff 3.5: The Star That Stopped Shining<br><span class="tag coming-soon">Coming Soon</span></h4>
+          <p class="extra-description">A special edition novel that tells the tale of what exactly happened to Pentagon in Shapeoff 3.</p>
+          <a href="not-yet.html" target="_blank" class="feature-button shapeoff disabled">Coming Soon</a>
+      </div>
+
+      <div class="extra-card">
+          <h4 class="extra-title">Horror Hospital: Shapeoff 5 Alt<br><span class="tag coming-soon">Coming Soon</span></h4>
+          <p class="extra-description">A game currently in development that tells an alternate universe story of Shapeoff 5's hospital scenes.</p>
+          <a href="not-yet.html" target="_blank" class="feature-button shapeoff disabled">Coming Soon</a>
+      </div>
+    
+  
+    </div>
+  </section>
+
+  <!-- Stylish Divider -->
+<div class="custom-divider">
+    <span class="line"></span>
+    <span class="divider-icon">■</span>
+    <span class="line"></span>
+  </div>
+  
+
+  <section class="intro-box">
+    <h2>🎵 The Friday Night Funkin' Shapeoff Mod</h2>
+<p class="subheading">A rhythm-based reimagining of the Shapeoff story.</p>
+<p>
+The <strong>Shapeoff Friday Night Funkin' mod</strong> is a creative reinterpretation of the original series, retelling key events through intense musical rap battles between the contestants.
+</p>
+<p>
+Featuring six original tracks composed by TimKS, the mod captures pivotal moments from the animated Shapeoff series. Though the project was never fully completed, each song represents a specific scene or emotional beat — such as <em>Wander</em>, which takes place during the events of Episode 3.
+</p>
+
+  </section>
+
+  <!-- FNF Mod Section -->
+<section class="fnfmod-grid">
+    <h3 class="title">Shapeoff Mod Full Soundtrack (YouTube)</h3>
+
+    <div class="fnfmod-cards">
+  
+      <!-- Songs -->
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">1. Sovereign</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/XXHlBCs1N0s?si=DSb91y4Dcp13M34Z" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">2. Shape-off</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/XXHlBCs1N0s?si=ZOcrbSjALJszp8GF" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">3. DRAW</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/9cM0oUncY-A?si=tdI-aA82go8seCwr" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">4. Wander</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/r8KSnjVOaxA?si=8ZS-45xTOMgLWzEm" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">5. Facility</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/bD9YhkVPiyU?si=QejOeO_BgC3gMchF" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+
+      <div class="fnfmod-card">
+        <h4 class="fnfmod-track-title">6. Deformity</h4>
+        <p class="fnfmod-composer">Composed by: TimKS</p>
+        <a href="https://youtu.be/5Rc3dti-3Z0?si=SbwoBTAtwheh6ist" class="watch-button" target="_blank">▶ Listen</a>
+      </div>
+  
+    </div>
+  </section>
+</body>
+</html>
