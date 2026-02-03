@@ -78,7 +78,20 @@
       rhombus: [{src: 'images/rhombus.png', title: ''}],
       nonagon: [{src: 'images/nonagon.png', title: ''}],
       decagon: [{src: 'images/decagon.png', title: ''}],
-      tablesoldier: [{src: 'images/table-soldier.png', title: ''}]
+      tablesoldier: [{src: 'images/table-soldier.png', title: ''}],
+      host: [{src: 'images/host.png', title: ''}],
+      heart: [{src: 'images/heart.png', title: ''}],
+      cross: [{src: 'images/cross.png', title: ''}],
+      evilcircle: [{src: 'images/evilcirclecurrent.png', title: ''}],
+      eviltriangle: [{src: 'images/eviltrianglecurrent.png', title: ''}],
+      evilsquare: [{src: 'images/evilsquarecurrent.png', title: ''}],
+      evilrectangle: [{src: 'images/evilrectangle.png', title: ''}],
+      evilhexagon: [{src: 'images/evilhexagon.png', title: ''}],
+      eviloctagon: [{src: 'images/eviloctagon.png', title: ''}],
+      eviloval: [{src: 'images/eviloval.png', title: ''}],
+      evilpentagon: [{src: 'images/evilpentagon.png', title: ''}],
+      eviltrapezoid: [{src: 'images/eviltrapezoid.png', title: ''}],
+      evilrhombus: [{src: 'images/evilrhombus.png', title: ''}],
     };
 
     // Helper used by legacy templates
@@ -627,6 +640,50 @@
             </div>
           </div>
         `,
+        host: `
+          <div class="character-profile">
+            <div class="profile-header">
+              ${generateArtHTML("host")}
+              <div class="profile-info">
+                <h2 class="char-name">Host</h2>
+                <p class="char-quote">"I'm inviting all of you to the first SHAPEOFF!"</p>
+                <div class="char-meta">
+                  <span class="gender-symbol">♂️</span>
+                  <span class="species">Species: ???</span>
+                  <span class="age">Age: 26</span>
+                  <span class="age">Status: Alive</span>
+                </div>
+                <p class="char-description">
+                  Being exiled from his home planet after failing a test when he was 18, 
+                  Host comes to the Shapelands to try and start a new life. 
+                  However, as he becomes increasingly familiar with the logistics of this foreign land, 
+                  he starts to realize the dystopian practices being done here. 
+                  To put an end to it, he hosts a game show where the grand prize is full control over the Shapelands, 
+                  hoping that the contestants would find a way to thwart the sinister government.
+                </p>
+              </div>
+            </div>
+
+            <div class="char-details">
+              <h3>Traits</h3>
+              <ul>
+                <li>Host is capable of many things such as teleportation and superhearing. Nobody really knows what Host's limits are though, but he does lack skills in psychological manipulation.</li>
+                <li>Compared to other Shapelanders in the Shapelands, Host is average in terms of intelligence. However, compared to his own kin, he is severely lacking.</li>
+                <li>Host is stubborn and tends to continue doing things when it's not in his best interest to do so.</li>
+              </ul>
+
+              <h3>Trivia</h3>
+              <ul>
+                <li>The fluffy shape on Host's head is of the same consistency and taste of frosting, but it is not edible.</li>
+                <li>Host himself does not know the extent of his power.</li>
+                <li>Host does not know where he comes from exactly.</li>
+                <li>Host's character is based off the show's director, TimKS.</li>
+                <li>Host's design is heavily inspired by one of TimKS's old avatars.</li>
+                <li>Host was named "Host" because the people making the characters, TimKS and Rhombagon, could not think of a better name. Over time, it just grew on the creators.</li>
+              </ul>
+            </div>
+          </div>
+        `,
 
       // more characters here...
     };
@@ -645,22 +702,21 @@
       nonagon: { name: 'Nonagon', tag: 'Mediator', accent: '#e71465', arts: characterArtImages.nonagon },
       trapezoid: { name: 'Trapezoid', tag: 'Cryptic', accent: '#ed6d98', arts: characterArtImages.trapezoid },
 
-      evilcircle: { name: 'Evil Circle', tag: 'Sovereign', accent: '#314ffd', arts: characterArtImages.placeholder },
-      eviltriangle: { name: 'Evil Triangle', tag: 'Aerial', accent: '#ff178f', arts: characterArtImages.placeholder },
-      evilsquare: { name: 'Evil Square', tag: 'Hypnotist', accent: '#0b0ea8', arts: characterArtImages.placeholder },
-      evilrectangle: { name: 'Evil Rectangle', tag: 'Commander', accent: '#18e622', arts: characterArtImages.placeholder },
-      evilhexagon: { name: 'Evil Hexagon', tag: 'Scout', accent: '#9d10df', arts: characterArtImages.placeholder },
-      eviloctagon: { name: 'Evil Octagon', tag: 'Archivist', accent: '#970008', arts: characterArtImages.placeholder },
-      eviloval: { name: 'Evil Oval', tag: 'Messenger', accent: '#ff6f0f', arts: characterArtImages.placeholder },
-      evilpentagon: { name: 'Evil Pentagon', tag: 'Engineer', accent: '#ffda35', arts: characterArtImages.placeholder },
-      evilrhombus: { name: 'Evil Rhombus', tag: 'Treasurer', accent: '#4fadec', arts: characterArtImages.placeholder },
-      eviltrapezoid: { name: 'Evil Trapezoid', tag: 'Scientist', accent: '#ed6d98', arts: characterArtImages.placeholder },
-
-      host: { name: 'Host', tag: 'Host', accent: '#ffc31d', arts: characterArtImages.placeholder },
+      evilcircle: { name: 'Evil Circle', tag: 'Sovereign', accent: '#314ffd', arts: characterArtImages.evilcircle },
+      eviltriangle: { name: 'Evil Triangle', tag: 'Aerial', accent: '#ff178f', arts: characterArtImages.eviltriangle },
+      evilsquare: { name: 'Evil Square', tag: 'Hypnotist', accent: '#0b0ea8', arts: characterArtImages.evilsquare },
+      evilrectangle: { name: 'Evil Rectangle', tag: 'Commander', accent: '#18e622', arts: characterArtImages.evilrectangle },
+      evilhexagon: { name: 'Evil Hexagon', tag: 'Scout', accent: '#9d10df', arts: characterArtImages.evilhexagon },
+      eviloctagon: { name: 'Evil Octagon', tag: 'Archivist', accent: '#970008', arts: characterArtImages.eviloctagon },
+      eviloval: { name: 'Evil Oval', tag: 'Messenger', accent: '#ff6f0f', arts: characterArtImages.eviloval },
+      evilpentagon: { name: 'Evil Pentagon', tag: 'Engineer', accent: '#ffda35', arts: characterArtImages.evilpentagon },
+      evilrhombus: { name: 'Evil Rhombus', tag: 'Treasurer', accent: '#4fadec', arts: characterArtImages.evilrhombus },
+      eviltrapezoid: { name: 'Evil Trapezoid', tag: 'Scientist', accent: '#ed6d98', arts: characterArtImages.eviltrapezoid },
+      host: { name: 'Host', tag: 'Host', accent: '#ffc31d', arts: characterArtImages.host },
       sphere: { name: 'Sphere', tag: 'Heir', accent: '#f11515', arts: characterArtImages.placeholder },
       decagon: { name: 'Decagon', tag: 'Genie', accent: '#c1ff70', arts: characterArtImages.decagon },
-      heart: { name: 'Heart', tag: 'Nurse', accent: '#ff76c1', arts: characterArtImages.placeholder },
-      cross: { name: 'Cross', tag: 'Doctor', accent: '#945e2b', arts: characterArtImages.placeholder },
+      heart: { name: 'Heart', tag: 'Nurse', accent: '#ff76c1', arts: characterArtImages.heart },
+      cross: { name: 'Cross', tag: 'Doctor', accent: '#945e2b', arts: characterArtImages.cross },
       tablesoldier: { name: 'Table Soldier', tag: 'Guard', accent: '#949494', arts: characterArtImages.tablesoldier },
 
       unknown: { name: '"Unknown"', tag: 'Regent', accent: '#000000', arts: characterArtImages.placeholder },
